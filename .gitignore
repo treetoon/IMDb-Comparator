@@ -11,3 +11,4 @@ IMDb-Comparator/IMDb-Comparator/IMDb-Comparator.vcxproj.filters
 *.obj
 *.idb
 *.csv
+*.user
