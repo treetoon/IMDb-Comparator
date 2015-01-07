@@ -9,7 +9,7 @@ class Title
 {
 private:
 	int position;
-	int constID; //arbitrary number such as "tt0295297"
+	std::string constID; //arbitrary number such as "tt0295297"
 	std::string created;
 	std::string modified;
 	std::string description;
@@ -29,7 +29,7 @@ public:
 	Title();
 	~Title();
 
-	void readTitle(std::ifstream fin);
+	void readTitle(std::ifstream &fin);
 	void writeTitle(const std::ofstream fout);
 
 
