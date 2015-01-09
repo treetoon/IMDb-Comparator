@@ -5,13 +5,16 @@
 
 
 
-class TitleList : Title
+class TitleList
 {
 private:
-	Title *t;
+	Title *t_arr;
 public:
 	TitleList();
 	~TitleList();
+
+	void writeFile(std::ifstream &fin);
+	void readFile(std::ifstream &fin);
 };
 
 #endif

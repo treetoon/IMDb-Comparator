@@ -156,5 +156,8 @@ void Title::readTitle(std::ifstream &fin)
 
 void Title::writeTitle(const std::ofstream fout)
 {
+	
+
 
 }
+

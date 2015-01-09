@@ -8,6 +8,9 @@
 class Title
 {
 private:
+	Title *t_arr;
+
+	//Title vars
 	int position;
 	std::string constID; //arbitrary number such as "tt0295297"
 	std::string created;
@@ -31,8 +34,6 @@ public:
 
 	void readTitle(std::ifstream &fin);
 	void writeTitle(const std::ofstream fout);
-
-
 };
 
 #endif
