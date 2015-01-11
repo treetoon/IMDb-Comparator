@@ -162,7 +162,7 @@ bool Title::readTitle(std::ifstream &fin)
 bool Title::writeTitle(const std::ostream &out)
 {
 	if (out){
-		out << position << std::endl; //m
+		out << position << std::endl; //mm
 		
 
 
