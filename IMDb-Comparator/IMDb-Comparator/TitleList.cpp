@@ -1,8 +1,9 @@
 #include "TitleList.h"
 
 
-TitleList::TitleList() : t_arr(0)
+TitleList::TitleList() : title(0)
 {
+	
 }
 
 
@@ -10,16 +11,32 @@ TitleList::~TitleList()
 {
 }
 
-void TitleList::writeFile(std::ifstream &fin){
-
+bool TitleList::writeFile(const std::ostream &out)
+{
 	//write all titles to a file
 
+	if (out){
+		for (size_t i = 0; i < title.size(); i++)
+		{
+			title[i].writeTitle(out);
+		}
+		return true;
+	}
+	return false;
 }
 
-void TitleList::readFile(std::ifstream &fin)
+bool TitleList::readFile(std::ifstream &fin)
 {
 	//adds titles from file to array
-	while (fin && !fin.eof())
-		readFile(fin);
-
+	if (fin){
+		while (!fin.eof())
+		{
+			Title temp;
+			if (temp.readTitle(fin)){
+				title.push_back(temp);
+			}
+		}
+		return true;
+	}
+	return false;
 }

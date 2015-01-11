@@ -6,6 +6,24 @@
 int main()
 {
 	std::ifstream fin("MovieList.csv");
+	std::ofstream fout("out.csv");
+
+	TitleList tl;
+	tl.readFile(fin);
+	tl.writeFile(fout);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	
