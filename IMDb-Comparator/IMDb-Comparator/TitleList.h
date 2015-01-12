@@ -13,8 +13,8 @@ public:
 	TitleList();
 	~TitleList();
 
-	bool writeFile(const std::ostream &out);
-	bool readFile(std::ifstream &fin);
+	bool writeFile(std::ostream &out);
+	bool readFile(std::istream &fin);
 };
 
 #endif

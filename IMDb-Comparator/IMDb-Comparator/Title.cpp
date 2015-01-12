@@ -16,7 +16,7 @@ Title::~Title()
 }
 
 
-bool Title::readTitle(std::ifstream &fin)
+bool Title::readTitle(std::istream &fin)
 {
 	std::string line;
 	int count = 0;
@@ -159,12 +159,27 @@ bool Title::readTitle(std::ifstream &fin)
 	return false;
 }
 
-bool Title::writeTitle(const std::ostream &out)
+bool Title::writeTitle(std::ostream &out)
 {
-	if (out){
-		out << position << std::endl; //mm
-		
-
+	if (out)
+	{
+		out << "Position: " << position << " ";
+		out << "Const: " << constID << " ";
+		out << "Created: " << created << " ";
+		out << "Modified: " << modified << " ";
+		out << "Description: " << description << " ";
+		out << "Title: " << title << " ";
+		out << "titleType: " << titleType << " ";
+		out << "directors: " << directors << " ";
+		out << "youRated: " << youRated << " ";
+		out << "IMDbRating: " << IMDbRating << " ";
+		out << "runtime: " << runtime << " ";
+		out << "year: " << year << " ";
+		out << "genres: " << genres << " ";
+		out << "numOfVotes: " << numOfVotes << " ";
+		out << "releaseDate: " << releaseDate << " ";
+		out << "URL: " << URL << " ";
+		out << std::endl;
 
 		return true;
 	}

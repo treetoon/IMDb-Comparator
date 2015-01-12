@@ -11,7 +11,7 @@ TitleList::~TitleList()
 {
 }
 
-bool TitleList::writeFile(const std::ostream &out)
+bool TitleList::writeFile(std::ostream &out)
 {
 	//write all titles to a file
 
@@ -25,7 +25,7 @@ bool TitleList::writeFile(const std::ostream &out)
 	return false;
 }
 
-bool TitleList::readFile(std::ifstream &fin)
+bool TitleList::readFile(std::istream &fin)
 {
 	//adds titles from file to array
 	if (fin){
