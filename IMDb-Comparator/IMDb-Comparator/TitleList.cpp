@@ -40,3 +40,8 @@ bool TitleList::readFile(std::istream &fin)
 	}
 	return false;
 }
+
+void TitleList::setf()
+{
+
+}

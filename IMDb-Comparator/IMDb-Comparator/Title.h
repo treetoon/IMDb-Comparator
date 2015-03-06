@@ -38,6 +38,7 @@ public:
 	bool writeTitle(std::ostream &out);
 
 	std::string getTitle();
+	void setf();
 };
 
 #endif

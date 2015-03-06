@@ -3,7 +3,9 @@
 
 #include "Title.h"
 #include <vector>
-
+#include <string>
+#include <iostream>
+#include <fstream>
 
 class TitleList
 {
@@ -15,6 +17,8 @@ public:
 
 	bool writeFile(std::ostream &out);
 	bool readFile(std::istream &fin);
+
+	void setf();
 };
 
 #endif
