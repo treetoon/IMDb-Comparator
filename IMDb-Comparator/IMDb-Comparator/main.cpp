@@ -3,6 +3,7 @@
 
 
 
+
 int main()
 {
 	std::ifstream fin("MovieList.csv");
@@ -11,14 +12,6 @@ int main()
 	TitleList tl;
 	tl.readFile(fin);
 	tl.writeFile(fout);
-
-
-
-
-	
-
-
-
 
 
 
