@@ -5,7 +5,7 @@
 #include <iostream>
 #include <fstream>
 
-class Title
+class __declspec(dllexport) Title
 {
 private:
 	//Title vars
@@ -40,5 +40,7 @@ public:
 	std::string getTitle();
 	void setf();
 };
+
+
 
 #endif
