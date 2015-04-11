@@ -11,3 +11,7 @@
 *.opensdf
 *.exp
 *.suo
+qt_IMDb/build-qt_IMDb-Desktop_Qt_5_4_1_MSVC2013_32bit-Release/
+qt_IMDb/build-qt_IMDb-Desktop_Qt_5_4_1_MSVC2013_32bit-Debug/
+*.psd
+*.png

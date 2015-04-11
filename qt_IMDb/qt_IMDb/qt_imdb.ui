@@ -6,35 +6,68 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>400</height>
+    <width>429</width>
+    <height>172</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>qt_IMDb</string>
+   <string>IMDb Comparator</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="qt_imdb.qrc">
+    <normaloff>:/icons/32x32/Resources/icon/32x32/IMDb-Comparator.ico</normaloff>:/icons/32x32/Resources/icon/32x32/IMDb-Comparator.ico</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>190</y>
-      <width>75</width>
-      <height>23</height>
+      <x>20</x>
+      <y>10</y>
+      <width>391</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Select one or more .csv files</string>
+    </property>
+    <widget class="QPushButton" name="browseButton">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>20</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Browse...</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="runButton">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>90</y>
+      <width>80</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Run</string>
     </property>
    </widget>
-   <widget class="QTreeView" name="treeView">
+   <widget class="QPushButton" name="clearButton">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>256</width>
-      <height>192</height>
+      <x>130</x>
+      <y>90</y>
+      <width>80</width>
+      <height>21</height>
      </rect>
+    </property>
+    <property name="text">
+     <string>Clear</string>
     </property>
    </widget>
   </widget>
@@ -43,17 +76,24 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
-     <height>21</height>
+     <width>429</width>
+     <height>20</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuButton">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>button</string>
+     <string>File</string>
     </property>
-    <addaction name="actionSep"/>
+    <addaction name="actionExit"/>
    </widget>
-   <addaction name="menuButton"/>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -64,9 +104,14 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionSep">
+  <action name="actionExit">
    <property name="text">
-    <string>sep</string>
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>

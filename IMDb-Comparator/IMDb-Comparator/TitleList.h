@@ -7,7 +7,7 @@
 #include <iostream>
 #include <fstream>
 
-class TitleList
+class TitleList : public Title
 {
 private:
 	std::vector<Title> title;
