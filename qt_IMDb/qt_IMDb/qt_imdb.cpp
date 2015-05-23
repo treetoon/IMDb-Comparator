@@ -10,13 +10,14 @@ qt_IMDb::qt_IMDb(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	
-
+	about = new aboutDialog();
+	form = new displayForm();
 }
 
 qt_IMDb::~qt_IMDb()
 {
 	delete about;
+	delete form;
 }
 
 
@@ -48,7 +49,6 @@ void qt_IMDb::on_actionExit_triggered()
 
 void qt_IMDb::on_actionAbout_triggered()
 {
-	about = new aboutDialog(this);
 	about->show();
 }
 
@@ -61,8 +61,7 @@ void qt_IMDb::on_clearButton_clicked()
 void qt_IMDb::on_runButton_clicked()
 {
 	//launch displayform window
-	
-	form.show(); //temp crash
+	form->show();
 
 	
 
