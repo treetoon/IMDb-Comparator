@@ -25,21 +25,34 @@ void qt_IMDb::on_browseButton_clicked()
 {
 	std::ifstream fin;
 
-	files = QFileDialog::getOpenFileNames(
-		this, "Select one or more files to open", "C://", 
-		"IMDb files (*.csv);;Text files (*.txt);;All files (*.*)");
+	//get filename
+	file_1 = QFileDialog::getOpenFileName(this, "Select one file to open", 
+		"C://", "IMDb files (*.csv);;Text files (*.txt);;All files (*.*)");
 
-	for (short i = 0; i < files.length(); i++){
-		fin.open(files.at(i).toLocal8Bit().constData());
-	}
+	QMessageBox::information(this, "asd", file_1);
 
-	
-	
-	
-	
+
+
+	//set filename
+	fin.open(file_1.toLocal8Bit().constData());
+
+	//read from .csv file and save all titles into the TitleList
 	tl.readFile(fin);
-	
+}
 
+void qt_IMDb::on_browse_2Button_clicked()
+{
+	std::ifstream fin;
+
+	//get filename
+	file_2 = QFileDialog::getOpenFileName(this, "Select one file to open",
+		"C://", "IMDb files (*.csv);;Text files (*.txt);;All files (*.*)");
+
+	//set filename
+	fin.open(file_2.toLocal8Bit().constData());
+
+	//read from .csv file and save all titles into the TitleList
+	tl2.readFile(fin);
 }
 
 void qt_IMDb::on_actionExit_triggered()
@@ -52,20 +65,16 @@ void qt_IMDb::on_actionAbout_triggered()
 	about->show();
 }
 
-void qt_IMDb::on_clearButton_clicked()
-{
-	//clear files
-	//files.clear();
-}
-
-void qt_IMDb::on_runButton_clicked()
+void qt_IMDb::on_runButton_clicked() //Show List Button
 {
 	//launch displayform window
 	form->show();
 
 	
 
-
-	//std::ofstream fout("out.csv");
-	//tl.writeFile(fout);
+	//temp file output
+	std::ofstream fout0("out0.csv");
+	std::ofstream fout1("out1.csv");
+	tl.writeFile(fout0);
+	tl2.writeFile(fout1);
 }

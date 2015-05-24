@@ -28,9 +28,9 @@ private slots:
 
     void on_actionAbout_triggered();
 
-    void on_clearButton_clicked();
-
     void on_runButton_clicked();
+
+    void on_browse_2Button_clicked();
 
 private:
 	Ui::qt_IMDbClass ui;
@@ -38,8 +38,8 @@ private:
 	aboutDialog *about;
 	displayForm *form;
 
-	QStringList files;
-	TitleList tl;
+	QString file_1, file_2;
+	TitleList tl, tl2;
 };
 
 #endif // QT_IMDB_H

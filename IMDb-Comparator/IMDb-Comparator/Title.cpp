@@ -192,8 +192,3 @@ std::string Title::getTitle()
 {
 	return title;
 }
-
-void Title::setf()
-{
-
-}

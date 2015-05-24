@@ -13,12 +13,12 @@ TitleList::~TitleList()
 
 bool TitleList::writeFile(std::ostream &out)
 {
-	//write all titles to a file
+	//write all vector titles to a file
 
 	if (out){
 		for (size_t i = 0; i < title.size(); i++)
 		{
-			title[i].writeTitle(out);
+				title[i].writeTitle(out);
 		}
 		return true;
 	}
@@ -33,15 +33,10 @@ bool TitleList::readFile(std::istream &fin)
 		{
 			Title temp;
 			if (temp.readTitle(fin)){
-				title.push_back(temp);
+				title.push_back(temp); //add element at end
 			}
 		}
 		return true;
 	}
 	return false;
-}
-
-void TitleList::setf()
-{
-
 }

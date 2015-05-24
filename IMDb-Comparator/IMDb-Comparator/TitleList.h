@@ -17,8 +17,6 @@ public:
 
 	bool writeFile(std::ostream &out);
 	bool readFile(std::istream &fin);
-
-	void setf();
 };
 
 #endif

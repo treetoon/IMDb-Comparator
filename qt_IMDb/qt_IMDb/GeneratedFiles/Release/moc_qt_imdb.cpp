@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_qt_IMDb_t {
     QByteArrayData data[7];
-    char stringdata[126];
+    char stringdata[129];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,14 +34,14 @@ QT_MOC_LITERAL(1, 8, 23), // "on_browseButton_clicked"
 QT_MOC_LITERAL(2, 32, 0), // ""
 QT_MOC_LITERAL(3, 33, 23), // "on_actionExit_triggered"
 QT_MOC_LITERAL(4, 57, 24), // "on_actionAbout_triggered"
-QT_MOC_LITERAL(5, 82, 22), // "on_clearButton_clicked"
-QT_MOC_LITERAL(6, 105, 20) // "on_runButton_clicked"
+QT_MOC_LITERAL(5, 82, 20), // "on_runButton_clicked"
+QT_MOC_LITERAL(6, 103, 25) // "on_browse_2Button_clicked"
 
     },
     "qt_IMDb\0on_browseButton_clicked\0\0"
     "on_actionExit_triggered\0"
-    "on_actionAbout_triggered\0"
-    "on_clearButton_clicked\0on_runButton_clicked"
+    "on_actionAbout_triggered\0on_runButton_clicked\0"
+    "on_browse_2Button_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -83,8 +83,8 @@ void qt_IMDb::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 0: _t->on_browseButton_clicked(); break;
         case 1: _t->on_actionExit_triggered(); break;
         case 2: _t->on_actionAbout_triggered(); break;
-        case 3: _t->on_clearButton_clicked(); break;
-        case 4: _t->on_runButton_clicked(); break;
+        case 3: _t->on_runButton_clicked(); break;
+        case 4: _t->on_browse_2Button_clicked(); break;
         default: ;
         }
     }

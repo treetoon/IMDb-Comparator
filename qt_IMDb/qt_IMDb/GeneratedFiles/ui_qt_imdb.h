@@ -14,13 +14,12 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGroupBox>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -35,21 +34,22 @@ public:
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     QGroupBox *groupBox;
-    QHBoxLayout *horizontalLayout;
-    QPushButton *clearButton;
     QPushButton *browseButton;
+    QPushButton *browse_2Button;
     QPushButton *runButton;
+    QLabel *label;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuHelp;
     QToolBar *mainToolBar;
-    QStatusBar *statusBar;
 
     void setupUi(QMainWindow *qt_IMDbClass)
     {
         if (qt_IMDbClass->objectName().isEmpty())
             qt_IMDbClass->setObjectName(QStringLiteral("qt_IMDbClass"));
-        qt_IMDbClass->resize(400, 150);
+        qt_IMDbClass->resize(400, 250);
+        qt_IMDbClass->setMinimumSize(QSize(400, 250));
+        qt_IMDbClass->setMaximumSize(QSize(400, 250));
         QIcon icon;
         icon.addFile(QStringLiteral(":/icons/32x32/Resources/icon/32x32/IMDb-Comparator.ico"), QSize(), QIcon::Normal, QIcon::Off);
         qt_IMDbClass->setWindowIcon(icon);
@@ -66,28 +66,25 @@ public:
         groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         groupBox->setMinimumSize(QSize(300, 50));
-        horizontalLayout = new QHBoxLayout(groupBox);
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        clearButton = new QPushButton(groupBox);
-        clearButton->setObjectName(QStringLiteral("clearButton"));
-        clearButton->setMaximumSize(QSize(100, 16777215));
-
-        horizontalLayout->addWidget(clearButton);
-
         browseButton = new QPushButton(groupBox);
         browseButton->setObjectName(QStringLiteral("browseButton"));
-        browseButton->setMaximumSize(QSize(100, 16777215));
-
-        horizontalLayout->addWidget(browseButton);
-
+        browseButton->setGeometry(QRect(295, 40, 75, 21));
+        browseButton->setMinimumSize(QSize(75, 21));
+        browseButton->setMaximumSize(QSize(75, 21));
+        browse_2Button = new QPushButton(groupBox);
+        browse_2Button->setObjectName(QStringLiteral("browse_2Button"));
+        browse_2Button->setGeometry(QRect(295, 80, 75, 21));
+        browse_2Button->setMinimumSize(QSize(75, 21));
+        browse_2Button->setMaximumSize(QSize(75, 21));
         runButton = new QPushButton(groupBox);
         runButton->setObjectName(QStringLiteral("runButton"));
-        runButton->setMaximumSize(QSize(100, 16777215));
-
-        horizontalLayout->addWidget(runButton);
-
+        runButton->setGeometry(QRect(141, 141, 100, 21));
+        runButton->setMinimumSize(QSize(100, 21));
+        runButton->setMaximumSize(QSize(100, 21));
+        label = new QLabel(groupBox);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(10, 40, 271, 16));
+        label->setMaximumSize(QSize(271, 20));
 
         verticalLayout->addWidget(groupBox);
 
@@ -103,9 +100,6 @@ public:
         mainToolBar = new QToolBar(qt_IMDbClass);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
         qt_IMDbClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
-        statusBar = new QStatusBar(qt_IMDbClass);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        qt_IMDbClass->setStatusBar(statusBar);
 
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuHelp->menuAction());
@@ -122,10 +116,11 @@ public:
         qt_IMDbClass->setWindowTitle(QApplication::translate("qt_IMDbClass", "IMDb Comparator", 0));
         actionExit->setText(QApplication::translate("qt_IMDbClass", "Exit", 0));
         actionAbout->setText(QApplication::translate("qt_IMDbClass", "About", 0));
-        groupBox->setTitle(QApplication::translate("qt_IMDbClass", "Select one or more .csv files", 0));
-        clearButton->setText(QApplication::translate("qt_IMDbClass", "Clear", 0));
+        groupBox->setTitle(QApplication::translate("qt_IMDbClass", "Select .csv files", 0));
         browseButton->setText(QApplication::translate("qt_IMDbClass", "Browse...", 0));
+        browse_2Button->setText(QApplication::translate("qt_IMDbClass", "Browse...", 0));
         runButton->setText(QApplication::translate("qt_IMDbClass", "Show Lists", 0));
+        label->setText(QApplication::translate("qt_IMDbClass", "TextLabel", 0));
         menuFile->setTitle(QApplication::translate("qt_IMDbClass", "File", 0));
         menuHelp->setTitle(QApplication::translate("qt_IMDbClass", "Help", 0));
     } // retranslateUi
