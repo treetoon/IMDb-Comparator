@@ -13,9 +13,11 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -34,10 +36,14 @@ public:
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     QGroupBox *groupBox;
-    QPushButton *browseButton;
-    QPushButton *browse_2Button;
+    QGridLayout *gridLayout;
+    QFrame *frame_2;
+    QGridLayout *gridLayout_3;
     QPushButton *runButton;
-    QLabel *label;
+    QLineEdit *browse_line_1;
+    QPushButton *browseButton;
+    QLineEdit *browse_line_2;
+    QPushButton *browse_2Button;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuHelp;
@@ -47,9 +53,9 @@ public:
     {
         if (qt_IMDbClass->objectName().isEmpty())
             qt_IMDbClass->setObjectName(QStringLiteral("qt_IMDbClass"));
-        qt_IMDbClass->resize(400, 250);
-        qt_IMDbClass->setMinimumSize(QSize(400, 250));
-        qt_IMDbClass->setMaximumSize(QSize(400, 250));
+        qt_IMDbClass->resize(400, 200);
+        qt_IMDbClass->setMinimumSize(QSize(400, 200));
+        qt_IMDbClass->setMaximumSize(QSize(400, 200));
         QIcon icon;
         icon.addFile(QStringLiteral(":/icons/32x32/Resources/icon/32x32/IMDb-Comparator.ico"), QSize(), QIcon::Normal, QIcon::Off);
         qt_IMDbClass->setWindowIcon(icon);
@@ -66,25 +72,55 @@ public:
         groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         groupBox->setMinimumSize(QSize(300, 50));
-        browseButton = new QPushButton(groupBox);
-        browseButton->setObjectName(QStringLiteral("browseButton"));
-        browseButton->setGeometry(QRect(295, 40, 75, 21));
-        browseButton->setMinimumSize(QSize(75, 21));
-        browseButton->setMaximumSize(QSize(75, 21));
-        browse_2Button = new QPushButton(groupBox);
-        browse_2Button->setObjectName(QStringLiteral("browse_2Button"));
-        browse_2Button->setGeometry(QRect(295, 80, 75, 21));
-        browse_2Button->setMinimumSize(QSize(75, 21));
-        browse_2Button->setMaximumSize(QSize(75, 21));
-        runButton = new QPushButton(groupBox);
+        gridLayout = new QGridLayout(groupBox);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        frame_2 = new QFrame(groupBox);
+        frame_2->setObjectName(QStringLiteral("frame_2"));
+        frame_2->setMaximumSize(QSize(16777215, 50));
+        frame_2->setFrameShape(QFrame::StyledPanel);
+        frame_2->setFrameShadow(QFrame::Raised);
+        gridLayout_3 = new QGridLayout(frame_2);
+        gridLayout_3->setSpacing(6);
+        gridLayout_3->setContentsMargins(11, 11, 11, 11);
+        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
+        runButton = new QPushButton(frame_2);
         runButton->setObjectName(QStringLiteral("runButton"));
-        runButton->setGeometry(QRect(141, 141, 100, 21));
         runButton->setMinimumSize(QSize(100, 21));
         runButton->setMaximumSize(QSize(100, 21));
-        label = new QLabel(groupBox);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(10, 40, 271, 16));
-        label->setMaximumSize(QSize(271, 20));
+
+        gridLayout_3->addWidget(runButton, 0, 0, 1, 1);
+
+
+        gridLayout->addWidget(frame_2, 2, 0, 1, 2);
+
+        browse_line_1 = new QLineEdit(groupBox);
+        browse_line_1->setObjectName(QStringLiteral("browse_line_1"));
+        browse_line_1->setReadOnly(true);
+
+        gridLayout->addWidget(browse_line_1, 0, 0, 1, 1);
+
+        browseButton = new QPushButton(groupBox);
+        browseButton->setObjectName(QStringLiteral("browseButton"));
+        browseButton->setMinimumSize(QSize(75, 21));
+        browseButton->setMaximumSize(QSize(75, 21));
+
+        gridLayout->addWidget(browseButton, 0, 1, 1, 1);
+
+        browse_line_2 = new QLineEdit(groupBox);
+        browse_line_2->setObjectName(QStringLiteral("browse_line_2"));
+        browse_line_2->setReadOnly(true);
+
+        gridLayout->addWidget(browse_line_2, 1, 0, 1, 1);
+
+        browse_2Button = new QPushButton(groupBox);
+        browse_2Button->setObjectName(QStringLiteral("browse_2Button"));
+        browse_2Button->setMinimumSize(QSize(75, 21));
+        browse_2Button->setMaximumSize(QSize(75, 21));
+
+        gridLayout->addWidget(browse_2Button, 1, 1, 1, 1);
+
 
         verticalLayout->addWidget(groupBox);
 
@@ -117,10 +153,18 @@ public:
         actionExit->setText(QApplication::translate("qt_IMDbClass", "Exit", 0));
         actionAbout->setText(QApplication::translate("qt_IMDbClass", "About", 0));
         groupBox->setTitle(QApplication::translate("qt_IMDbClass", "Select .csv files", 0));
+        runButton->setText(QApplication::translate("qt_IMDbClass", "Show Lists", 0));
+#ifndef QT_NO_TOOLTIP
+        browse_line_1->setToolTip(QString());
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_STATUSTIP
+        browse_line_1->setStatusTip(QString());
+#endif // QT_NO_STATUSTIP
+#ifndef QT_NO_ACCESSIBILITY
+        browse_line_1->setAccessibleDescription(QString());
+#endif // QT_NO_ACCESSIBILITY
         browseButton->setText(QApplication::translate("qt_IMDbClass", "Browse...", 0));
         browse_2Button->setText(QApplication::translate("qt_IMDbClass", "Browse...", 0));
-        runButton->setText(QApplication::translate("qt_IMDbClass", "Show Lists", 0));
-        label->setText(QApplication::translate("qt_IMDbClass", "TextLabel", 0));
         menuFile->setTitle(QApplication::translate("qt_IMDbClass", "File", 0));
         menuHelp->setTitle(QApplication::translate("qt_IMDbClass", "Help", 0));
     } // retranslateUi

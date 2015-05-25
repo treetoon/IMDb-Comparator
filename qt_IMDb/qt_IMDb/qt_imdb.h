@@ -3,6 +3,9 @@
 
 #include <QtWidgets/QMainWindow>
 #include <QSizePolicy>
+#include <QFileDialog>
+#include <QMessageBox>
+
 #include "ui_qt_imdb.h"
 
 #include <Title.h>
@@ -19,7 +22,6 @@ class qt_IMDb : public QMainWindow
 public:
 	qt_IMDb(QWidget *parent = 0);
 	~qt_IMDb();
-
 
 private slots:
     void on_browseButton_clicked();
@@ -41,5 +43,7 @@ private:
 	QString file_1, file_2;
 	TitleList tl, tl2;
 };
+
+
 
 #endif // QT_IMDB_H

@@ -14,9 +14,10 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QSplitter>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -26,12 +27,13 @@ QT_BEGIN_NAMESPACE
 class Ui_displayForm
 {
 public:
-    QGridLayout *gridLayout;
-    QGroupBox *groupBox;
     QVBoxLayout *verticalLayout;
+    QSplitter *splitter_4;
+    QGroupBox *groupBox;
+    QHBoxLayout *horizontalLayout_2;
     QTableView *tableView;
     QGroupBox *groupBox_2;
-    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout;
     QTableView *tableView_2;
     QComboBox *comboBox;
 
@@ -49,16 +51,21 @@ public:
         QIcon icon;
         icon.addFile(QStringLiteral(":/icons/32x32/Resources/icon/32x32/IMDb-Comparator.ico"), QSize(), QIcon::Normal, QIcon::Off);
         displayForm->setWindowIcon(icon);
-        gridLayout = new QGridLayout(displayForm);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        groupBox = new QGroupBox(displayForm);
+        verticalLayout = new QVBoxLayout(displayForm);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        splitter_4 = new QSplitter(displayForm);
+        splitter_4->setObjectName(QStringLiteral("splitter_4"));
+        splitter_4->setOrientation(Qt::Horizontal);
+        splitter_4->setChildrenCollapsible(false);
+        groupBox = new QGroupBox(splitter_4);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         sizePolicy.setHeightForWidth(groupBox->sizePolicy().hasHeightForWidth());
         groupBox->setSizePolicy(sizePolicy);
+        groupBox->setMinimumSize(QSize(100, 0));
         groupBox->setStyleSheet(QStringLiteral(""));
         groupBox->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
-        verticalLayout = new QVBoxLayout(groupBox);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout_2 = new QHBoxLayout(groupBox);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         tableView = new QTableView(groupBox);
         tableView->setObjectName(QStringLiteral("tableView"));
         sizePolicy.setHeightForWidth(tableView->sizePolicy().hasHeightForWidth());
@@ -67,40 +74,33 @@ public:
         tableView->horizontalHeader()->setCascadingSectionResizes(false);
         tableView->verticalHeader()->setCascadingSectionResizes(false);
 
-        verticalLayout->addWidget(tableView);
+        horizontalLayout_2->addWidget(tableView);
 
-
-        gridLayout->addWidget(groupBox, 0, 1, 1, 1);
-
-        groupBox_2 = new QGroupBox(displayForm);
+        splitter_4->addWidget(groupBox);
+        groupBox_2 = new QGroupBox(splitter_4);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
         sizePolicy.setHeightForWidth(groupBox_2->sizePolicy().hasHeightForWidth());
         groupBox_2->setSizePolicy(sizePolicy);
-        verticalLayout_2 = new QVBoxLayout(groupBox_2);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        groupBox_2->setMinimumSize(QSize(100, 0));
+        horizontalLayout = new QHBoxLayout(groupBox_2);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         tableView_2 = new QTableView(groupBox_2);
         tableView_2->setObjectName(QStringLiteral("tableView_2"));
         sizePolicy.setHeightForWidth(tableView_2->sizePolicy().hasHeightForWidth());
         tableView_2->setSizePolicy(sizePolicy);
 
-        verticalLayout_2->addWidget(tableView_2);
+        horizontalLayout->addWidget(tableView_2);
 
-        tableView_2->raise();
-        tableView->raise();
+        splitter_4->addWidget(groupBox_2);
 
-        gridLayout->addWidget(groupBox_2, 0, 5, 1, 1);
+        verticalLayout->addWidget(splitter_4);
 
         comboBox = new QComboBox(displayForm);
         comboBox->setObjectName(QStringLiteral("comboBox"));
         comboBox->setMaximumSize(QSize(250, 16777215));
 
-        gridLayout->addWidget(comboBox, 1, 1, 1, 1);
+        verticalLayout->addWidget(comboBox);
 
-        groupBox->raise();
-        groupBox_2->raise();
-        tableView->raise();
-        tableView_2->raise();
-        comboBox->raise();
 
         retranslateUi(displayForm);
 

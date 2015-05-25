@@ -36,7 +36,7 @@
     <normaloff>:/icons/32x32/Resources/icon/32x32/IMDb-Comparator.ico</normaloff>:/icons/32x32/Resources/icon/32x32/IMDb-Comparator.ico</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item alignment="Qt::AlignHCenter">
+   <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
     <widget class="QLabel" name="label">
      <property name="sizeIncrement">
       <size>
@@ -56,15 +56,21 @@
      </property>
     </widget>
    </item>
-   <item alignment="Qt::AlignHCenter">
+   <item alignment="Qt::AlignHCenter|Qt::AlignTop">
     <widget class="QLabel" name="label_2">
      <property name="text">
       <string>Copyright 2014-2015 treetoon</string>
      </property>
     </widget>
    </item>
-   <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
+   <item alignment="Qt::AlignHCenter">
     <widget class="QCommandLinkButton" name="commandLinkButton">
+     <property name="maximumSize">
+      <size>
+       <width>150</width>
+       <height>50</height>
+      </size>
+     </property>
      <property name="layoutDirection">
       <enum>Qt::LeftToRight</enum>
      </property>

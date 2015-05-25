@@ -55,19 +55,20 @@ public:
         font.setWeight(75);
         label->setFont(font);
 
-        verticalLayout->addWidget(label, 0, Qt::AlignHCenter);
+        verticalLayout->addWidget(label, 0, Qt::AlignHCenter|Qt::AlignBottom);
 
         label_2 = new QLabel(aboutDialog);
         label_2->setObjectName(QStringLiteral("label_2"));
 
-        verticalLayout->addWidget(label_2, 0, Qt::AlignHCenter);
+        verticalLayout->addWidget(label_2, 0, Qt::AlignHCenter|Qt::AlignTop);
 
         commandLinkButton = new QCommandLinkButton(aboutDialog);
         commandLinkButton->setObjectName(QStringLiteral("commandLinkButton"));
+        commandLinkButton->setMaximumSize(QSize(150, 50));
         commandLinkButton->setLayoutDirection(Qt::LeftToRight);
         commandLinkButton->setIconSize(QSize(40, 40));
 
-        verticalLayout->addWidget(commandLinkButton, 0, Qt::AlignHCenter|Qt::AlignBottom);
+        verticalLayout->addWidget(commandLinkButton, 0, Qt::AlignHCenter);
 
 
         retranslateUi(aboutDialog);
