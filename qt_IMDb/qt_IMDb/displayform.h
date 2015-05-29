@@ -3,7 +3,9 @@
 
 #include <QWidget>
 #include <QStandardItem>
-#include <QHBoxLayout>
+
+#include "TitleList.h"
+
 
 
 namespace Ui {
@@ -19,18 +21,18 @@ public:
     ~displayForm();
 
 	void setGroupBoxTitles(QString file_1, QString file_2);
+	void setTitleList(TitleList tl, TitleList tl2);
+	void updateFormModel();
 
 private slots:
-
     void on_comboBox_currentIndexChanged(int index);
 
 private:
     Ui::displayForm *ui;
-
+	
 	QStandardItemModel *model, *model_2;
-	QStandardItem *item;
 
-	const int title_vars;
+	TitleList tl, tl2;
 };
 
 #endif // DISPLAYFORM_H

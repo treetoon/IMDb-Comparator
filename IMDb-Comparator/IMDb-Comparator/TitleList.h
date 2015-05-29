@@ -1,22 +1,26 @@
 #ifndef TITLELIST_H
 #define TITLELIST_H
 
-#include "Title.h"
 #include <vector>
-#include <string>
-#include <iostream>
 #include <fstream>
 
-class TitleList : public Title
+#include "Title.h"
+
+
+
+class TitleList 
 {
 private:
 	std::vector<Title> title;
 public:
 	TitleList();
-	~TitleList();
+	~TitleList();	
 
 	bool writeFile(std::ostream &out);
 	bool readFile(std::istream &fin);
+
+	int getSizeOfVector();
+	std::string getTitle(unsigned int titlePos, unsigned int titleVarPos);
 };
 
 #endif

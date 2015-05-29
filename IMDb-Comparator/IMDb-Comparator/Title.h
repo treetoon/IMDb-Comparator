@@ -2,15 +2,14 @@
 #define TITLE_H
 
 #include <string>
-#include <iostream>
-#include <fstream>
+
+
 
 class __declspec(dllexport) Title
 {
 private:
 	//Title vars
-	int position;
-
+	std::string position;
 	std::string constID; //arbitrary number such as "tt0295297"
 	std::string created;
 	std::string modified;
@@ -20,13 +19,13 @@ private:
 	std::string titleType; //documentary, full feature etc
 	std::string directors;
 
-	double youRated;
-	double IMDbRating;
-	int runtime; //minutes
-	int year;
+	std::string youRated;
+	std::string IMDbRating;
+	std::string runtime; //minutes
+	std::string year;
 
 	std::string genres;
-	int numOfVotes;
+	std::string numOfVotes;
 	std::string releaseDate;
 	std::string URL;
 
@@ -37,7 +36,7 @@ public:
 	bool readTitle(std::istream &fin);
 	bool writeTitle(std::ostream &out);
 
-	std::string getTitle();
+	std::string getTitleVars(unsigned int titleVarPos);
 };
 
 

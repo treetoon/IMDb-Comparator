@@ -1,4 +1,9 @@
+#include <string>
+#include <iostream>
+
 #include "TitleList.h"
+#include "imdb_constants.h"
+
 
 
 TitleList::TitleList() : title(0)
@@ -39,4 +44,21 @@ bool TitleList::readFile(std::istream &fin)
 		return true;
 	}
 	return false;
+}
+
+int TitleList::getSizeOfVector()
+{
+	return title.size();
+}
+
+std::string TitleList::getTitle(unsigned int titlePos, unsigned int titleVarPos)
+{
+	if (titlePos <= title.size() && titlePos >= 0 && !title.empty() && 
+		titleVarPos <= imdb::totTitleVars && titleVarPos >= 0)
+	{
+		return title.at(titlePos).getTitleVars(titleVarPos);
+	}
+	else{
+		return "";
+	}
 }

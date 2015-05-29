@@ -29,5 +29,8 @@
     <ClInclude Include="TitleList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="imdb_constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,3 +1,5 @@
+#include <QFileDialog>
+
 #include "qt_imdb.h"
 
 
@@ -9,9 +11,6 @@ qt_IMDb::qt_IMDb(QWidget *parent)
 
 	about = new aboutDialog();
 	form = new displayForm();
-	
-	//Signals and Slots
-
 }
 
 qt_IMDb::~qt_IMDb()
@@ -19,7 +18,6 @@ qt_IMDb::~qt_IMDb()
 	delete about;
 	delete form;
 }
-
 
 void qt_IMDb::on_browseButton_clicked()
 {
@@ -70,13 +68,20 @@ void qt_IMDb::on_actionAbout_triggered()
 void qt_IMDb::on_runButton_clicked() //Show List Button
 {
 	form->setGroupBoxTitles(file_1, file_2);
+	form->setTitleList(tl, tl2);
+
+
+
+
 
 	//launch displayform window
+	form->updateFormModel();
 	form->show();
-
+	
 	//file output
 	//std::ofstream fout0("out0.csv");
 	//std::ofstream fout1("out1.csv");
 	//tl.writeFile(fout0);
 	//tl2.writeFile(fout1);
 }
+

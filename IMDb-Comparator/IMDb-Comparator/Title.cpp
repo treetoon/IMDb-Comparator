@@ -1,13 +1,16 @@
+#include <iostream>
+#include <fstream>
+
 #include "Title.h"
+#include "imdb_constants.h"
 
 
 Title::Title()
-	: position(0), constID(""), created(""), modified(""),
+	: position(""), constID(""), created(""), modified(""),
 description(""), title(""), titleType(""), directors(""),
-youRated(0.0), IMDbRating(0.0), runtime(0), year(0), 
-genres(""), numOfVotes(0), releaseDate(""), URL("")
+youRated(""), IMDbRating(""), runtime(""), year(""), 
+genres(""), numOfVotes(""), releaseDate(""), URL("")
 {
-	
 }
 
 
@@ -18,20 +21,12 @@ Title::~Title()
 
 bool Title::readTitle(std::istream &fin)
 {
+	//clean this function
+
 	std::string line;
 	int count = 0;
-	const int lineVars = 16; //total variables (16)
 
-	std::string position_ = "";
-	std::string youRated_ = "";
-	std::string IMDbRating_ = "";
-	std::string runtime_ = "";
-	std::string year_ = "";
-	std::string numOfVotes_ = "";
 
-	bool position_check = false, youRated_check = false,
-		IMDbRating_check = false, runtime_check = false,
-		year_check = false, numOfVotes_check = false;
 
 	if (fin) //file okay?
 	{
@@ -39,7 +34,7 @@ bool Title::readTitle(std::istream &fin)
 
 		if (!line.empty())
 		{
-			for (int var = 1; var <= lineVars; var++)  //loop total vars
+			for (int var = 1; var <= imdb::totTitleVars; var++)  //loop total vars
 			{
 				if (line.at(count) == '\"') //extra check that we can start reading
 				{
@@ -51,8 +46,7 @@ bool Title::readTitle(std::istream &fin)
 
 						if (var == 1 && line.at(0) == '\"') //first occurrence
 						{
-							position_.append(line.substr(count, 1)); //position
-							position_check = true;
+							position.append(line.substr(count, 1)); //position
 						}
 
 						else if (var == 2){
@@ -84,23 +78,19 @@ bool Title::readTitle(std::istream &fin)
 						}
 
 						else if (var == 9){
-							youRated_.append(line.substr(count, 1));
-							youRated_check = true;
+							youRated.append(line.substr(count, 1));
 						}
 
 						else if (var == 10){
-							IMDbRating_.append(line.substr(count, 1));
-							IMDbRating_check = true;
+							IMDbRating.append(line.substr(count, 1));
 						}
 
 						else if (var == 11){
-							runtime_.append(line.substr(count, 1));
-							runtime_check = true;
+							runtime.append(line.substr(count, 1));
 						}
 
 						else if (var == 12){
-							year_.append(line.substr(count, 1));
-							year_check = true;
+							year.append(line.substr(count, 1));
 						}
 
 						else if (var == 13){
@@ -108,8 +98,7 @@ bool Title::readTitle(std::istream &fin)
 						}
 
 						else if (var == 14){
-							numOfVotes_.append(line.substr(count, 1));
-							numOfVotes_check = true;
+							numOfVotes.append(line.substr(count, 1));
 						}
 
 						else if (var == 15){
@@ -124,31 +113,7 @@ bool Title::readTitle(std::istream &fin)
 					}
 				}
 
-				//conversions
-				if (position_check){
-					position = atoi(position_.c_str());
-					position_check = false;
-				}
-				else if (youRated_check){
-					youRated = atof(youRated_.c_str());
-					youRated_check = false;
-				}
-				else if (IMDbRating_check){
-					IMDbRating = atof(IMDbRating_.c_str());
-					IMDbRating_check = false;
-				}
-				else if (runtime_check){
-					runtime = atoi(runtime_.c_str());
-					runtime_check = false;
-				}
-				else if (year_check){
-					year = atoi(year_.c_str());
-					year_check = false;
-				}
-				else if (numOfVotes_check){
-					numOfVotes = atoi(numOfVotes_.c_str());
-					numOfVotes_check = false;
-				}
+
 
 				count = line.find(",", count);
 				count++;
@@ -188,7 +153,50 @@ bool Title::writeTitle(std::ostream &out)
 	}
 }
 
-std::string Title::getTitle()
+std::string Title::getTitleVars(unsigned int titleVarPos)
 {
-	return title;
+	//table order
+
+	if (titleVarPos < imdb::totTitleVars && titleVarPos >= 0)
+	{
+		switch (titleVarPos)
+		{
+		case 0:
+			return title;
+		case 1:
+			return titleType;
+		case 2:
+			return directors;
+		case 3:
+			return IMDbRating;
+		case 4:
+			return youRated ;
+		case 5:
+			return year;
+		case 6:
+			return runtime;
+		case 7:
+			return genres;
+		case 8:
+			return numOfVotes;
+		case 9:
+			return releaseDate;
+		case 10:
+			return URL;
+		case 11:
+			return created;
+		case 12:
+			return modified;
+		case 13:
+			return position;
+		case 14:
+			return constID;
+		case 15:
+			return description;
+		default:
+			return "";
+		}
+	}
+
+	return "";
 }

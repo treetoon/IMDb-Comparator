@@ -22,7 +22,6 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -47,7 +46,6 @@ public:
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuHelp;
-    QToolBar *mainToolBar;
 
     void setupUi(QMainWindow *qt_IMDbClass)
     {
@@ -133,9 +131,6 @@ public:
         menuHelp = new QMenu(menuBar);
         menuHelp->setObjectName(QStringLiteral("menuHelp"));
         qt_IMDbClass->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(qt_IMDbClass);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        qt_IMDbClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
 
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuHelp->menuAction());

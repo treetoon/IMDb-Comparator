@@ -2,14 +2,9 @@
 #define QT_IMDB_H
 
 #include <QtWidgets/QMainWindow>
-#include <QSizePolicy>
-#include <QFileDialog>
-#include <QMessageBox>
-
 #include "ui_qt_imdb.h"
 
-#include <Title.h>
-#include <TitleList.h>
+#include "TitleList.h"
 
 //Windows
 #include "displayform.h"
