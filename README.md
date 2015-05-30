@@ -8,8 +8,12 @@ More specifically your IMDb lists should be comparable with each others. For exa
 Use the IMDb-Comparator/IMDb-Comparator.sln (solution) for the proper projects. 
 
 
-HOWTO STEPS TO USE VISUAL STUDIO:
+HOWTO STEPS TO USE VISUAL STUDIO: 
+
 1. Install "qt-opensource-windows-x86-msvc2013-5.4.1"
+
 2. Install "qt-vs-addin-1.2.4-opensource" //Visual Studio addon
+
 3. In VS, QT5-> Qt Options-> Add-> Path-> "C:\Qt\Qt5.4.1\5.4\msvc2013"; bin, lib, include should be here etc
+
 4. Run in IMDb-Comparator/IMDb-Comparator.sln, this project should have the proper settings, may need tweaks
