@@ -77,8 +77,9 @@ public:
         frame_2 = new QFrame(groupBox);
         frame_2->setObjectName(QStringLiteral("frame_2"));
         frame_2->setMaximumSize(QSize(16777215, 50));
-        frame_2->setFrameShape(QFrame::StyledPanel);
+        frame_2->setFrameShape(QFrame::NoFrame);
         frame_2->setFrameShadow(QFrame::Raised);
+        frame_2->setLineWidth(0);
         gridLayout_3 = new QGridLayout(frame_2);
         gridLayout_3->setSpacing(6);
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -125,7 +126,7 @@ public:
         qt_IMDbClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(qt_IMDbClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 400, 20));
+        menuBar->setGeometry(QRect(0, 0, 400, 18));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         menuHelp = new QMenu(menuBar);

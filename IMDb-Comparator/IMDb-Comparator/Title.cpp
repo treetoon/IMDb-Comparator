@@ -164,21 +164,21 @@ std::string Title::getTitleVars(unsigned int titleVarPos)
 		case 0:
 			return title;
 		case 1:
-			return titleType;
-		case 2:
 			return directors;
-		case 3:
+		case 2:
 			return IMDbRating;
+		case 3:
+			return youRated;
 		case 4:
-			return youRated ;
+			return year ;
 		case 5:
-			return year;
-		case 6:
 			return runtime;
-		case 7:
+		case 6:
 			return genres;
-		case 8:
+		case 7:
 			return numOfVotes;
+		case 8:
+			return titleType;
 		case 9:
 			return releaseDate;
 		case 10:

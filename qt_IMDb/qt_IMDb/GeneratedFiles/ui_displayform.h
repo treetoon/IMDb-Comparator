@@ -41,6 +41,7 @@ public:
     {
         if (displayForm->objectName().isEmpty())
             displayForm->setObjectName(QStringLiteral("displayForm"));
+        displayForm->setWindowModality(Qt::ApplicationModal);
         displayForm->resize(1221, 634);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);

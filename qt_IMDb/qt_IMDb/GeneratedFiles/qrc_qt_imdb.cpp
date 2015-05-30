@@ -7,7 +7,7 @@
 *****************************************************************************/
 
 static const unsigned char qt_resource_data[] = {
-  // D:/treetoon Library/Documents/GitHub/IMDb-Comparator/qt_IMDb/qt_IMDb/Resources/icon/32x32/IMDb-Comparator.ico
+  // C:/Users/treetoon-LP/Documents/Visual Studio 2013/Projects/github/IMDb-Comparator/qt_IMDb/qt_IMDb/Resources/icon/32x32/IMDb-Comparator.ico
   0x0,0x0,0x15,0x36,
   0x0,
   0x0,0x1,0x0,0x2,0x0,0x10,0x10,0x0,0x0,0x0,0x0,0x20,0x0,0x68,0x4,0x0,

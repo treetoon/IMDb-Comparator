@@ -23,6 +23,7 @@ public:
 	void setGroupBoxTitles(QString file_1, QString file_2);
 	void setTitleList(TitleList tl, TitleList tl2);
 	void updateFormModel();
+	void designTableRows();
 
 private slots:
     void on_comboBox_currentIndexChanged(int index);

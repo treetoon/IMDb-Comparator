@@ -32,6 +32,9 @@ bool TitleList::writeFile(std::ostream &out)
 
 bool TitleList::readFile(std::istream &fin)
 {
+	//clear the film title vector
+	title.clear();
+
 	//adds titles from file to array
 	if (fin){
 		while (!fin.eof())

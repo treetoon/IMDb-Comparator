@@ -1,6 +1,7 @@
 #include <string>
 
 #include "imdb_constants.h"
+using namespace imdb;
 
 //Windows
 #include "displayform.h"
@@ -17,8 +18,8 @@ displayForm::displayForm(QWidget *parent) :
 	this->setWindowTitle("Film List Comparisons");
 
 	//create the tables
-	model = new QStandardItemModel(0, imdb::totTitleVars, this);
-	model_2 = new QStandardItemModel(0, imdb::totTitleVars, this);
+	model = new QStandardItemModel(0, totTitleVars, this);
+	model_2 = new QStandardItemModel(0, totTitleVars, this);
 }
 
 displayForm::~displayForm()
@@ -31,6 +32,7 @@ displayForm::~displayForm()
 
 void displayForm::setGroupBoxTitles(QString file_1, QString file_2)
 {
+	//set .csv file names as group box titles
 	if (!file_1.isEmpty())
 		ui->groupBox->setTitle(file_1);
 	else
@@ -50,36 +52,17 @@ void displayForm::setTitleList(TitleList tl, TitleList tl2)
 
 void displayForm::updateFormModel()
 {
-	//clear the tables
-	//
-
 	//set table sizes
 	model->setRowCount(tl.getSizeOfVector());
 	model_2->setRowCount(tl2.getSizeOfVector());
 
-	//set table box column width
-	//
 	
 	//sort columns on click
 	//
-	
 
-	//no box edit allowed
+	//no edit allowed
 	ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 	ui->tableView_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-	//set header labels
-	QStringList HeaderLabels;
-	HeaderLabels << "Title" << "Title type" << "Directors" <<
-		"IMDb Rating" << "You rated" << "Year" <<
-		"Runtime (mins)" << "Genres" << "Num. Votes" <<
-		"Release Date (month/day/year)" << "URL" << "Created" <<
-		"Modified" << "Position" << "ConstID" << "Description";
-		
-	model->setHorizontalHeaderLabels(HeaderLabels);
-	model_2->setHorizontalHeaderLabels(HeaderLabels);
-
-
 
 	//.csv files comes with an example as the first film entry, 
 	//if it's there we don't print it to the table
@@ -93,6 +76,7 @@ void displayForm::updateFormModel()
 		example_2--;
 	}
 
+	//print all items 
 	for (unsigned int row = 0; row < tl.getSizeOfVector(); row++){
 		for (unsigned int column = 0; column < imdb::totTitleVars; column++)
 			{
@@ -104,6 +88,7 @@ void displayForm::updateFormModel()
 			}
 	}
 
+	//do the same for the second table
 	for (unsigned int row = 0; row < tl2.getSizeOfVector(); row++){
 		for (unsigned int column = 0; column < imdb::totTitleVars; column++)
 		{
@@ -116,6 +101,8 @@ void displayForm::updateFormModel()
 	//display models in tableView
 	ui->tableView->setModel(model);
 	ui->tableView_2->setModel(model_2);
+
+	designTableRows();
 }
 
 
@@ -130,4 +117,55 @@ void displayForm::on_comboBox_currentIndexChanged(int index)
 
 
 	}
+}
+
+void displayForm::designTableRows()
+{
+	//set header labels
+	QStringList HeaderLabels;
+	HeaderLabels << "Title" << "Directors" << 
+		"IMDb Rating" << "You rated" << "Year" << 
+		"Runtime (mins)" << "Genres" << "Num. Votes" << 
+		"Title type" <<	"Release Date (month/day/year)" << 
+		"URL" << "Created" << "Modified" << 
+		"Position" << "ConstID" << "Description";
+
+	model->setHorizontalHeaderLabels(HeaderLabels);
+	model_2->setHorizontalHeaderLabels(HeaderLabels);
+
+	//set table box column width
+	ui->tableView->setColumnWidth( TITLE,			150);
+	ui->tableView->setColumnWidth( DIRECTORS, 		75);
+	ui->tableView->setColumnWidth( IMDB_RATING,		30);
+	ui->tableView->setColumnWidth( YOU_RATED,		30);
+	ui->tableView->setColumnWidth( YEAR,				40);
+	ui->tableView->setColumnWidth( RUNTIME,			30);
+	ui->tableView->setColumnWidth( GENRES,			100);
+	ui->tableView->setColumnWidth( NUM_VOTES,		50);
+	ui->tableView->setColumnWidth( TITLE_TYPE,		75);
+	ui->tableView->setColumnWidth( RELEASE_DATE,		75);
+	ui->tableView->setColumnWidth( URL,				200);
+	ui->tableView->setColumnWidth( CREATED,			100);
+	ui->tableView->setColumnWidth( MODIFIED,			100);
+	ui->tableView->setColumnWidth( POSITION,			30);
+	ui->tableView->setColumnWidth( CONSTID,			75);
+	ui->tableView->setColumnWidth( DESCRIPTION,		200);
+
+	//table 2
+	ui->tableView_2->setColumnWidth(TITLE, 150);
+	ui->tableView_2->setColumnWidth(DIRECTORS, 75);
+	ui->tableView_2->setColumnWidth(IMDB_RATING, 30);
+	ui->tableView_2->setColumnWidth(YOU_RATED, 30);
+	ui->tableView_2->setColumnWidth(YEAR, 40);
+	ui->tableView_2->setColumnWidth(RUNTIME, 30);
+	ui->tableView_2->setColumnWidth(GENRES, 100);
+	ui->tableView_2->setColumnWidth(NUM_VOTES, 50);
+	ui->tableView_2->setColumnWidth(TITLE_TYPE, 75);
+	ui->tableView_2->setColumnWidth(RELEASE_DATE, 75);
+	ui->tableView_2->setColumnWidth(URL, 200);
+	ui->tableView_2->setColumnWidth(CREATED, 100);
+	ui->tableView_2->setColumnWidth(MODIFIED, 100);
+	ui->tableView_2->setColumnWidth(POSITION, 30);
+	ui->tableView_2->setColumnWidth(CONSTID, 75);
+	ui->tableView_2->setColumnWidth(DESCRIPTION, 200);
 }

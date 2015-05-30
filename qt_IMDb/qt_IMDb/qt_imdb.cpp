@@ -67,17 +67,21 @@ void qt_IMDb::on_actionAbout_triggered()
 
 void qt_IMDb::on_runButton_clicked() //Show List Button
 {
+	//set group box title names
 	form->setGroupBoxTitles(file_1, file_2);
 	form->setTitleList(tl, tl2);
+	
+	//update model and force a maximized window
+	form->updateFormModel();
+	form->showMaximized();
 
-
-
-
+	//force focus on form window and disable user input on other windows
+	//setupUi overrides this
+	form->setWindowModality(Qt::ApplicationModal);
 
 	//launch displayform window
-	form->updateFormModel();
 	form->show();
-	
+
 	//file output
 	//std::ofstream fout0("out0.csv");
 	//std::ofstream fout1("out1.csv");
