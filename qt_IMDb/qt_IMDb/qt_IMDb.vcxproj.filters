@@ -102,5 +102,8 @@
     <ClInclude Include="GeneratedFiles\ui_displayform.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="qt_defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

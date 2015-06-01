@@ -151,7 +151,7 @@
     <ClCompile Include="TitleList.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="imdb_constants.h" />
+    <ClInclude Include="imdb_defines.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="TitleList.h" />
   </ItemGroup>

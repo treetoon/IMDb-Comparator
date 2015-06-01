@@ -1,9 +1,9 @@
 #include <string>
 
-#include "imdb_constants.h"
+#include "imdb_defines.h"
 using namespace imdb;
 
-//Windows
+//forms
 #include "displayform.h"
 #include "qt_imdb.h"
 
@@ -18,8 +18,8 @@ displayForm::displayForm(QWidget *parent) :
 	this->setWindowTitle("Film List Comparisons");
 
 	//create the tables
-	model = new QStandardItemModel(0, totTitleVars, this);
-	model_2 = new QStandardItemModel(0, totTitleVars, this);
+	model = new QStandardItemModel(0, TOT_TITLE_VARS, this);
+	model_2 = new QStandardItemModel(0, TOT_TITLE_VARS, this);
 }
 
 displayForm::~displayForm()
@@ -69,19 +69,19 @@ void displayForm::updateFormModel()
 	unsigned int example = 0;
 	unsigned int example_2 = 0;
 
-	if (tl.getTitle(0, 0) == "Title"){ //the example name of the first entry
+	if (tl.getTitleVar(0, 0) == "Title"){ //the example name of the first entry
 		example--;
 	}
-	if (tl2.getTitle(0, 0) == "Title"){
+	if (tl2.getTitleVar(0, 0) == "Title"){
 		example_2--;
 	}
 
 	//print all items 
 	for (unsigned int row = 0; row < tl.getSizeOfVector(); row++){
-		for (unsigned int column = 0; column < imdb::totTitleVars; column++)
+		for (unsigned int column = 0; column < imdb::TOT_TITLE_VARS; column++)
 			{
 				//convert string to Qstring then store title in item
-				QStandardItem *item = new QStandardItem(QString::fromStdString(tl.getTitle(row, column)));
+				QStandardItem *item = new QStandardItem(QString::fromStdString(tl.getTitleVar(row, column)));
 
 				//print item to table
 				model->setItem(row + example, column, item);
@@ -90,9 +90,9 @@ void displayForm::updateFormModel()
 
 	//do the same for the second table
 	for (unsigned int row = 0; row < tl2.getSizeOfVector(); row++){
-		for (unsigned int column = 0; column < imdb::totTitleVars; column++)
+		for (unsigned int column = 0; column < imdb::TOT_TITLE_VARS; column++)
 		{
-			QStandardItem *item_2 = new QStandardItem(QString::fromStdString(tl2.getTitle(row, column)));
+			QStandardItem *item_2 = new QStandardItem(QString::fromStdString(tl2.getTitleVar(row, column)));
 
 			model_2->setItem(row + example_2, column, item_2);
 		}
@@ -108,14 +108,69 @@ void displayForm::updateFormModel()
 
 void displayForm::on_comboBox_currentIndexChanged(int index)
 {
-	if (index == 0){
-		//model->setItem(8, item);
-		//item->setText("option00");
-	}
-	else if (index == 1){
-		//item->setText("option01");
+	QStandardItem *itemz = new QStandardItem;
+
+	TitleList temp = tl;
+	TitleList temp_2 = tl2;
+	const int constID = 14;
 
 
+	switch (index)
+	{
+	case 0: //Default / No Sorting
+		itemz->setText(QString::fromStdString("case 0 : default no sorting"));
+		model->setItem(0, 0, itemz);
+		break;
+
+
+
+
+	case 1: //Remove Duplicates
+
+		for (unsigned int i = 0; i < tl.getSizeOfVector(); i++)
+		{
+			for (unsigned int y = 0; y < tl2.getSizeOfVector(); y++)
+			{
+				if (tl.getTitleVar(i, constID) == tl2.getTitleVar(y, constID))
+				{
+					temp.removeTitleEntry(i);
+					temp_2.removeTitleEntry(y);
+				}
+			}
+		}
+
+		//print all items TEST ///////////////////////////////////////////////////
+		for (unsigned int row = 0; row < temp.getSizeOfVector(); row++){
+			for (unsigned int column = 0; column < imdb::TOT_TITLE_VARS; column++)
+			{
+				//convert string to Qstring then store title in item
+				QStandardItem *item = new QStandardItem(QString::fromStdString(temp.getTitleVar(row, column)));
+
+				//print item to table
+				model->setItem(row, column, item);
+			}
+		}
+		for (unsigned int row = 0; row < temp_2.getSizeOfVector(); row++){
+			for (unsigned int column = 0; column < imdb::TOT_TITLE_VARS; column++)
+			{
+				QStandardItem *item_2 = new QStandardItem(QString::fromStdString(temp_2.getTitleVar(row, column)));
+
+				model_2->setItem(row, column, item_2);
+			}
+		}
+
+
+
+
+
+
+		break;
+	case 2:
+		itemz->setText(QString::fromStdString("case 2 : test"));
+		model->setItem(0, 0, itemz);
+		break;
+	default:
+		break;
 	}
 }
 
@@ -133,39 +188,11 @@ void displayForm::designTableRows()
 	model->setHorizontalHeaderLabels(HeaderLabels);
 	model_2->setHorizontalHeaderLabels(HeaderLabels);
 
-	//set table box column width
-	ui->tableView->setColumnWidth( TITLE,			150);
-	ui->tableView->setColumnWidth( DIRECTORS, 		75);
-	ui->tableView->setColumnWidth( IMDB_RATING,		30);
-	ui->tableView->setColumnWidth( YOU_RATED,		30);
-	ui->tableView->setColumnWidth( YEAR,				40);
-	ui->tableView->setColumnWidth( RUNTIME,			30);
-	ui->tableView->setColumnWidth( GENRES,			100);
-	ui->tableView->setColumnWidth( NUM_VOTES,		50);
-	ui->tableView->setColumnWidth( TITLE_TYPE,		75);
-	ui->tableView->setColumnWidth( RELEASE_DATE,		75);
-	ui->tableView->setColumnWidth( URL,				200);
-	ui->tableView->setColumnWidth( CREATED,			100);
-	ui->tableView->setColumnWidth( MODIFIED,			100);
-	ui->tableView->setColumnWidth( POSITION,			30);
-	ui->tableView->setColumnWidth( CONSTID,			75);
-	ui->tableView->setColumnWidth( DESCRIPTION,		200);
+	//set row heights
+	ui->tableView->verticalHeader()->setDefaultSectionSize(23);
+	ui->tableView_2->verticalHeader()->setDefaultSectionSize(23);
 
-	//table 2
-	ui->tableView_2->setColumnWidth(TITLE, 150);
-	ui->tableView_2->setColumnWidth(DIRECTORS, 75);
-	ui->tableView_2->setColumnWidth(IMDB_RATING, 30);
-	ui->tableView_2->setColumnWidth(YOU_RATED, 30);
-	ui->tableView_2->setColumnWidth(YEAR, 40);
-	ui->tableView_2->setColumnWidth(RUNTIME, 30);
-	ui->tableView_2->setColumnWidth(GENRES, 100);
-	ui->tableView_2->setColumnWidth(NUM_VOTES, 50);
-	ui->tableView_2->setColumnWidth(TITLE_TYPE, 75);
-	ui->tableView_2->setColumnWidth(RELEASE_DATE, 75);
-	ui->tableView_2->setColumnWidth(URL, 200);
-	ui->tableView_2->setColumnWidth(CREATED, 100);
-	ui->tableView_2->setColumnWidth(MODIFIED, 100);
-	ui->tableView_2->setColumnWidth(POSITION, 30);
-	ui->tableView_2->setColumnWidth(CONSTID, 75);
-	ui->tableView_2->setColumnWidth(DESCRIPTION, 200);
+	//set table box column widths
+	SET_TABLE_COLUMN_WIDTH(tableView);
+	SET_TABLE_COLUMN_WIDTH(tableView_2);
 }

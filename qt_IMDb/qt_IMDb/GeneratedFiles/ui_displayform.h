@@ -121,8 +121,9 @@ public:
         groupBox_2->setTitle(QApplication::translate("displayForm", "#2 .csv file", 0));
         comboBox->clear();
         comboBox->insertItems(0, QStringList()
-         << QApplication::translate("displayForm", "No Sorting", 0)
+         << QApplication::translate("displayForm", "Default / No Sorting", 0)
          << QApplication::translate("displayForm", "Remove Duplicates", 0)
+         << QApplication::translate("displayForm", "test", 0)
         );
     } // retranslateUi
 

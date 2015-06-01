@@ -2,13 +2,12 @@
 #include <iostream>
 
 #include "TitleList.h"
-#include "imdb_constants.h"
+#include "imdb_defines.h"
 
 
 
 TitleList::TitleList() : title(0)
 {
-	
 }
 
 
@@ -54,14 +53,39 @@ int TitleList::getSizeOfVector()
 	return title.size();
 }
 
-std::string TitleList::getTitle(unsigned int titlePos, unsigned int titleVarPos)
+std::string TitleList::getTitleVar(unsigned int titlePos, unsigned int titleVarPos)
 {
 	if (titlePos <= title.size() && titlePos >= 0 && !title.empty() && 
-		titleVarPos <= imdb::totTitleVars && titleVarPos >= 0)
+		titleVarPos <= imdb::TOT_TITLE_VARS && titleVarPos >= 0)
 	{
 		return title.at(titlePos).getTitleVars(titleVarPos);
 	}
 	else{
 		return "";
 	}
+}
+
+void TitleList::setTitleVar(unsigned int titlePos, unsigned int titleVarPos, std::string name)
+{
+	if (titlePos <= title.size() && titlePos >= 0 && !title.empty() &&
+		titleVarPos <= imdb::TOT_TITLE_VARS && titleVarPos >= 0)
+	{
+		title.at(titlePos).setTitleVars(titleVarPos, name);
+	}
+}
+
+void TitleList::addTitleEntry(Title titleEntry)
+{
+	title.push_back(titleEntry);
+}
+
+void TitleList::removeTitleEntry(unsigned int titleEntryPos)
+{
+	//title.erase(title.begin() + titleEntryPos);
+	title[titleEntryPos].setTitleVars(0, "");
+}
+
+Title TitleList::getTitleEntry(unsigned int titleEntryPos)
+{
+	return title.at(titleEntryPos);
 }

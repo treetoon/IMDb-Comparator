@@ -81,11 +81,4 @@ void qt_IMDb::on_runButton_clicked() //Show List Button
 
 	//launch displayform window
 	form->show();
-
-	//file output
-	//std::ofstream fout0("out0.csv");
-	//std::ofstream fout1("out1.csv");
-	//tl.writeFile(fout0);
-	//tl2.writeFile(fout1);
 }
-

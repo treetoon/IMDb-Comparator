@@ -29,7 +29,7 @@
     <ClInclude Include="TitleList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="imdb_constants.h">
+    <ClInclude Include="imdb_defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

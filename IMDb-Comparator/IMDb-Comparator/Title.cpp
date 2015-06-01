@@ -2,7 +2,7 @@
 #include <fstream>
 
 #include "Title.h"
-#include "imdb_constants.h"
+#include "imdb_defines.h"
 
 
 Title::Title()
@@ -18,105 +18,81 @@ Title::~Title()
 {
 }
 
-
 bool Title::readTitle(std::istream &fin)
 {
-	//clean this function
+	if (fin){ //file okay check
 
-	std::string line;
-	int count = 0;
+		std::string line; //where the title row from the .csv file is stored
+		unsigned int currentChar = 0; //current character we're reading
 
+		//read the whole title row
+		std::getline(fin, line); 
 
-
-	if (fin) //file okay?
-	{
-		std::getline(fin, line);
-
-		if (!line.empty())
+		if (!line.empty()) //make sure that the title row is not empty
 		{
-			for (int var = 1; var <= imdb::totTitleVars; var++)  //loop total vars
-			{
-				if (line.at(count) == '\"') //extra check that we can start reading
+			//current variable we're reading in the title row, i.e title, directors etc
+			for (unsigned int currentVar = 1; currentVar <= imdb::TOT_TITLE_VARS; currentVar++)
+			{	
+				currentChar++;
+
+				//read one char at a time until " is found
+				switch (currentVar)
 				{
-					count++;
-
-					while (line.at(count) != '\"') //read until " is found
-					{
-						//one char at a time
-
-						if (var == 1 && line.at(0) == '\"') //first occurrence
-						{
-							position.append(line.substr(count, 1)); //position
-						}
-
-						else if (var == 2){
-							constID.append(line.substr(count, 1));
-						}
-
-						else if (var == 3){
-							created.append(line.substr(count, 1));
-						}
-
-						else if (var == 4){
-							modified.append(line.substr(count, 1));
-						}
-
-						else if (var == 5){
-							description.append(line.substr(count, 1));
-						}
-
-						else if (var == 6){
-							title.append(line.substr(count, 1));
-						}
-
-						else if (var == 7){
-							titleType.append(line.substr(count, 1));
-						}
-
-						else if (var == 8){
-							directors.append(line.substr(count, 1));
-						}
-
-						else if (var == 9){
-							youRated.append(line.substr(count, 1));
-						}
-
-						else if (var == 10){
-							IMDbRating.append(line.substr(count, 1));
-						}
-
-						else if (var == 11){
-							runtime.append(line.substr(count, 1));
-						}
-
-						else if (var == 12){
-							year.append(line.substr(count, 1));
-						}
-
-						else if (var == 13){
-							genres.append(line.substr(count, 1));
-						}
-
-						else if (var == 14){
-							numOfVotes.append(line.substr(count, 1));
-						}
-
-						else if (var == 15){
-							releaseDate.append(line.substr(count, 1));
-						}
-
-						else if (var == 16){
-							URL.append(line.substr(count, 1));
-						}
-
-						count++;
-					}
+				case 1:
+					APPEND_CURRENT_CHARACTER(position);
+					break;
+				case 2:
+					APPEND_CURRENT_CHARACTER(constID);
+					break;
+				case 3:
+					APPEND_CURRENT_CHARACTER(created);
+					break;
+				case 4:
+					APPEND_CURRENT_CHARACTER(modified);
+					break;
+				case 5:
+					APPEND_CURRENT_CHARACTER(description);
+					break;
+				case 6:
+					APPEND_CURRENT_CHARACTER(title);
+					break;
+				case 7:
+					APPEND_CURRENT_CHARACTER(titleType);
+					break;
+				case 8:
+					APPEND_CURRENT_CHARACTER(directors);
+					break;
+				case 9:
+					APPEND_CURRENT_CHARACTER(youRated);
+					break;
+				case 10:
+					APPEND_CURRENT_CHARACTER(IMDbRating);
+					break;
+				case 11:
+					APPEND_CURRENT_CHARACTER(runtime);
+					break;
+				case 12:
+					APPEND_CURRENT_CHARACTER(year);
+					break;
+				case 13:
+					APPEND_CURRENT_CHARACTER(genres);
+					break;
+				case 14:
+					APPEND_CURRENT_CHARACTER(numOfVotes);
+					break;
+				case 15:
+					APPEND_CURRENT_CHARACTER(releaseDate);
+					break;
+				case 16:
+					APPEND_CURRENT_CHARACTER(URL);
+					break;
+				default:
+					break;
 				}
-
-
-
-				count = line.find(",", count);
-				count++;
+											
+				//look for , from the position we're at, then set our current char
+				currentChar = line.find(",", currentChar); 
+				currentChar++;
 			}
 			return true;
 		}
@@ -128,22 +104,22 @@ bool Title::writeTitle(std::ostream &out)
 {
 	if (out)
 	{
-		out << "Position: " << position << " ";
-		out << "Const: " << constID << " ";
-		out << "Created: " << created << " ";
-		out << "Modified: " << modified << " ";
-		out << "Description: " << description << " ";
-		out << "Title: " << title << " ";
-		out << "titleType: " << titleType << " ";
-		out << "directors: " << directors << " ";
-		out << "youRated: " << youRated << " ";
-		out << "IMDbRating: " << IMDbRating << " ";
-		out << "runtime: " << runtime << " ";
-		out << "year: " << year << " ";
-		out << "genres: " << genres << " ";
-		out << "numOfVotes: " << numOfVotes << " ";
-		out << "releaseDate: " << releaseDate << " ";
-		out << "URL: " << URL << " ";
+		out << "Position: "		<< position << " ";
+		out << "Const: "		<< constID << " ";
+		out << "Created: "		<< created << " ";
+		out << "Modified: "		<< modified << " ";
+		out << "Description: "	<< description << " ";
+		out << "Title: "		<< title << " ";
+		out << "titleType: "	<< titleType << " ";
+		out << "directors: "	<< directors << " ";
+		out << "youRated: "		<< youRated << " ";
+		out << "IMDbRating: "	<< IMDbRating << " ";
+		out << "runtime: "		<< runtime << " ";
+		out << "year: "			<< year << " ";
+		out << "genres: "		<< genres << " ";
+		out << "numOfVotes: "	<< numOfVotes << " ";
+		out << "releaseDate: "	<< releaseDate << " ";
+		out << "URL: "			<< URL << " ";
 		out << std::endl;
 
 		return true;
@@ -157,7 +133,7 @@ std::string Title::getTitleVars(unsigned int titleVarPos)
 {
 	//table order
 
-	if (titleVarPos < imdb::totTitleVars && titleVarPos >= 0)
+	if (titleVarPos < imdb::TOT_TITLE_VARS && titleVarPos >= 0)
 	{
 		switch (titleVarPos)
 		{
@@ -170,7 +146,7 @@ std::string Title::getTitleVars(unsigned int titleVarPos)
 		case 3:
 			return youRated;
 		case 4:
-			return year ;
+			return year;
 		case 5:
 			return runtime;
 		case 6:
@@ -199,4 +175,66 @@ std::string Title::getTitleVars(unsigned int titleVarPos)
 	}
 
 	return "";
+}
+
+void Title::setTitleVars(unsigned int titleVarPos, std::string name)
+{
+	//table order
+
+	if (titleVarPos < imdb::TOT_TITLE_VARS && titleVarPos >= 0)
+	{
+		switch (titleVarPos)
+		{
+		case 0:
+			title = name;
+			break;
+		case 1:
+			directors = name;
+			break;
+		case 2:
+			IMDbRating = name;
+			break;
+		case 3:
+			youRated = name;
+			break;
+		case 4:
+			year = name;
+			break;
+		case 5:
+			runtime = name;
+			break;
+		case 6:
+			genres = name;
+			break;
+		case 7:
+			numOfVotes = name;
+			break;
+		case 8:
+			titleType = name;
+			break;
+		case 9:
+			releaseDate = name;
+			break;
+		case 10:
+			URL = name;
+			break;
+		case 11:
+			created = name;
+			break;
+		case 12:
+			modified = name;
+			break;
+		case 13:
+			position = name;
+			break;
+		case 14:
+			constID = name;
+			break;
+		case 15:
+			description = name;
+			break;
+		default:
+			break;
+		}
+	}
 }

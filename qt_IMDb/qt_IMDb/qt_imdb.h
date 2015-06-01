@@ -6,7 +6,7 @@
 
 #include "TitleList.h"
 
-//Windows
+//forms
 #include "displayform.h"
 #include "aboutdialog.h"
 
@@ -20,13 +20,9 @@ public:
 
 private slots:
     void on_browseButton_clicked();
-
     void on_actionExit_triggered();
-
     void on_actionAbout_triggered();
-
     void on_runButton_clicked();
-
     void on_browse_2Button_clicked();
 
 private:

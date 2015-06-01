@@ -37,6 +37,7 @@ public:
 	bool writeTitle(std::ostream &out);
 
 	std::string getTitleVars(unsigned int titleVarPos);
+	void setTitleVars(unsigned int titleVarPos, std::string name);
 };
 
 
