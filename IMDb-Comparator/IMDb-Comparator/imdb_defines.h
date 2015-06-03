@@ -50,5 +50,14 @@ namespace imdb
 	ui->tableView->setColumnWidth( DESCRIPTION,		500 ); \
 
 
+#define SET_HEADER_LABELS(HeaderLabels) \
+		HeaderLabels << "Title" << "Directors" << \
+"IMDb Rating" << "You rated" << "Year" << \
+"Runtime (mins)" << "Genres" << "Num. Votes" << \
+"Title type" << "Release Date (month/day/year)" << \
+"URL" << "Created" << "Modified" << \
+"Position" << "ConstID" << "Description"; \
+
+
 
 #endif

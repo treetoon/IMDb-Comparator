@@ -22,7 +22,7 @@ bool TitleList::writeFile(std::ostream &out)
 	if (out){
 		for (size_t i = 0; i < title.size(); i++)
 		{
-				title[i].writeTitle(out);
+			title[i].writeTitle(out);
 		}
 		return true;
 	}
@@ -55,8 +55,8 @@ int TitleList::getSizeOfVector()
 
 std::string TitleList::getTitleVar(unsigned int titlePos, unsigned int titleVarPos)
 {
-	if (titlePos <= title.size() && titlePos >= 0 && !title.empty() && 
-		titleVarPos <= imdb::TOT_TITLE_VARS && titleVarPos >= 0)
+	if (titlePos < title.size() && titlePos >= 0 && !title.empty() && 
+		titleVarPos < imdb::TOT_TITLE_VARS && titleVarPos >= 0)
 	{
 		return title.at(titlePos).getTitleVars(titleVarPos);
 	}
@@ -77,12 +77,6 @@ void TitleList::setTitleVar(unsigned int titlePos, unsigned int titleVarPos, std
 void TitleList::addTitleEntry(Title titleEntry)
 {
 	title.push_back(titleEntry);
-}
-
-void TitleList::removeTitleEntry(unsigned int titleEntryPos)
-{
-	//title.erase(title.begin() + titleEntryPos);
-	title[titleEntryPos].setTitleVars(0, "");
 }
 
 Title TitleList::getTitleEntry(unsigned int titleEntryPos)
