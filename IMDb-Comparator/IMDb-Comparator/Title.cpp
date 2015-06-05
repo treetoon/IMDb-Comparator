@@ -129,7 +129,7 @@ bool Title::writeTitle(std::ostream &out)
 	}
 }
 
-std::string Title::getTitleVars(unsigned int titleVarPos)
+std::string Title::getTitleVar(int titleVarPos)
 {
 	//table order
 
@@ -177,7 +177,7 @@ std::string Title::getTitleVars(unsigned int titleVarPos)
 	return "";
 }
 
-void Title::setTitleVars(unsigned int titleVarPos, std::string name)
+void Title::setTitleVars(int titleVarPos, std::string name)
 {
 	//table order
 

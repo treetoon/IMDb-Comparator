@@ -80,11 +80,13 @@ void displayForm::on_comboBox_currentIndexChanged(int index)
 		printTable(tl, *model);
 		printTable(tl2, *model_2);
 		break;
+
 	case 1: //Remove Duplicates
 
 		//prints table order without duplicates
 		printTable_RemoveDuplicates();
 		break;
+
 	case 2:
 
 		break;
@@ -115,29 +117,9 @@ void displayForm::designTableRows()
 	SET_TABLE_COLUMN_WIDTH(tableView_2);
 }
 
-bool displayForm::setIf_TitleList_HasExample(unsigned int &example, TitleList &tl)
-//checks if the first entry in the TitleList (.csv file) is considered an 
-//example, i.e, looking like this: "position","const","created".. etc 
-//"Title" is the first element in the organized table within TitleList, 
-//thus why it is checked
-{
-	if (tl.getTitleVar(0, 0) == "Title"){
-		example--;
-		return true;
-	}
-	else{
-		return false;
-	}
-}
-
 void displayForm::printTable(TitleList &tl, QStandardItemModel &model)
 //prints everything possible into the table
 {
-	//.csv files comes with an example as the first film entry, 
-	//if it's there we don't print it to the table
-	unsigned int example = 0;
-	setIf_TitleList_HasExample(example, tl);
-
 	//print table
 	for (unsigned int row = 0; row < tl.getSizeOfVector(); row++){
 		for (unsigned int column = 0; column < imdb::TOT_TITLE_VARS; column++)
@@ -146,7 +128,7 @@ void displayForm::printTable(TitleList &tl, QStandardItemModel &model)
 			QStandardItem *item = new QStandardItem(QString::fromStdString(tl.getTitleVar(row, column)));
 
 			//print item to table
-			model.setItem(row + example, column, item);
+			model.setItem(row, column, item);
 		}
 	}
 }
@@ -154,26 +136,27 @@ void displayForm::printTable(TitleList &tl, QStandardItemModel &model)
 void displayForm::printTable_RemoveDuplicates()
 //compares the two .csv files and removes duplicates, then prints to the table
 {
+	std::vector<int> index_list;
 
-	//terrible code, table 2 broken
-
-	int actual_row = 0;
-
-	for (unsigned int x = 0; x < tl.getSizeOfVector(); x++)
+	//delete duplicates in table #1 starting from bottom
+	for (int x = tl.getSizeOfVector() - 1; x >= 0; x--)
 	{
 		for (unsigned int y = 0; y < tl2.getSizeOfVector(); y++)
 		{
-			if (tl.getTitleVar(x + 1, CONSTID) == tl2.getTitleVar(y + 1, CONSTID)) //+1 skip example temp
+			if (tl.getTitleVar(x, CONSTID) == tl2.getTitleVar(y, CONSTID))
 			{
-				model->removeRow(x + actual_row);
-				model_2->removeRow(y + actual_row);
-				actual_row--;
+				model->removeRow(x);
 
-				//end loop
-				break;
+				//store index for #2 table due to sync issues
+				index_list.push_back(y);
 			}
 		}
 	}
+	
+	//sort the list
+	std::sort(index_list.begin(), index_list.end());
 
-
+	//delete duplicates in table #2 starting from bottom
+	for (int i = index_list.size() - 1; i >= 0; i--)
+		model_2->removeRow(index_list.at(i));
 }

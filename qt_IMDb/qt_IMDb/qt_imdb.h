@@ -18,6 +18,8 @@ public:
 	qt_IMDb(QWidget *parent = 0);
 	~qt_IMDb();
 
+	void qt_IMDb::readFile(QString &file_temp, QLineEdit &browse_line_temp, TitleList &tl_temp);
+
 private slots:
     void on_browseButton_clicked();
     void on_actionExit_triggered();

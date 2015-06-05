@@ -36,8 +36,8 @@ public:
 	bool readTitle(std::istream &fin);
 	bool writeTitle(std::ostream &out);
 
-	std::string getTitleVars(unsigned int titleVarPos);
-	void setTitleVars(unsigned int titleVarPos, std::string name);
+	std::string getTitleVar(int titleVarPos);
+	void setTitleVars(int titleVarPos, std::string name);
 };
 
 

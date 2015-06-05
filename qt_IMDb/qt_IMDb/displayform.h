@@ -24,7 +24,6 @@ public:
 	void setTitleList(const TitleList &tl, const TitleList &tl2);
 	void updateFormModel();
 	void designTableRows();
-	bool setIf_TitleList_HasExample(unsigned int &example, TitleList &tl);
 
 	void printTable(TitleList &tl, QStandardItemModel &model);
 	void printTable_RemoveDuplicates();

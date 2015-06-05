@@ -1,9 +1,10 @@
 #include <string>
 #include <iostream>
+#include <vector> //?
+#include <algorithm> //?
 
 #include "TitleList.h"
 #include "imdb_defines.h"
-
 
 
 TitleList::TitleList() : title(0)
@@ -35,7 +36,11 @@ bool TitleList::readFile(std::istream &fin)
 	title.clear();
 
 	//adds titles from file to array
-	if (fin){
+	if (fin)
+	{
+		//check for the example film entry row in the file
+		removeFilmEntryExample(fin);
+
 		while (!fin.eof())
 		{
 			Title temp;
@@ -53,22 +58,44 @@ int TitleList::getSizeOfVector()
 	return title.size();
 }
 
-std::string TitleList::getTitleVar(unsigned int titlePos, unsigned int titleVarPos)
+bool TitleList::removeFilmEntryExample(std::istream &fin)
+//checks if the first entry in the TitleList (.csv file) is considered an 
+//example, i.e, looking like this: "position","const","created".. etc 
+{
+	if (fin)
+	{
+		Title temp;
+
+		if (temp.readTitle(fin))
+		{
+			if (temp.getTitleVar(imdb::CONSTID) == "const"){
+				return true; //film entry example was found, don't read it in
+			}
+			else{
+				title.push_back(temp); //film entry example was not found, read it in
+				return false;
+			}
+		}
+	}
+	return false;
+}
+
+std::string TitleList::getTitleVar(int titlePos, int titleVarPos)
 {
 	if (titlePos < title.size() && titlePos >= 0 && !title.empty() && 
 		titleVarPos < imdb::TOT_TITLE_VARS && titleVarPos >= 0)
 	{
-		return title.at(titlePos).getTitleVars(titleVarPos);
+		return title.at(titlePos).getTitleVar(titleVarPos);
 	}
 	else{
-		return "";
+		return "EXIT_FAILURE";
 	}
 }
 
-void TitleList::setTitleVar(unsigned int titlePos, unsigned int titleVarPos, std::string name)
+void TitleList::setTitleVar(int titlePos, int titleVarPos, std::string name)
 {
-	if (titlePos <= title.size() && titlePos >= 0 && !title.empty() &&
-		titleVarPos <= imdb::TOT_TITLE_VARS && titleVarPos >= 0)
+	if (titlePos < title.size() && titlePos >= 0 && !title.empty() &&
+		titleVarPos < imdb::TOT_TITLE_VARS && titleVarPos >= 0)
 	{
 		title.at(titlePos).setTitleVars(titleVarPos, name);
 	}
@@ -79,7 +106,7 @@ void TitleList::addTitleEntry(Title titleEntry)
 	title.push_back(titleEntry);
 }
 
-Title TitleList::getTitleEntry(unsigned int titleEntryPos)
+Title TitleList::getTitleEntry(int titleEntryPos)
 {
 	return title.at(titleEntryPos);
 }
