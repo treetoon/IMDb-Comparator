@@ -132,17 +132,12 @@
      </property>
      <item>
       <property name="text">
-       <string>Default / No Sorting</string>
+       <string>Show All</string>
       </property>
      </item>
      <item>
       <property name="text">
        <string>Remove Duplicates</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>test</string>
       </property>
      </item>
     </widget>

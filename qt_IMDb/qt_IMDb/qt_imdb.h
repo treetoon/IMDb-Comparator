@@ -18,6 +18,7 @@ public:
 	qt_IMDb(QWidget *parent = 0);
 	~qt_IMDb();
 
+	void runButtonState();
 	void qt_IMDb::readFile(QString &file_temp, QLineEdit &browse_line_temp, TitleList &tl_temp);
 
 private slots:
@@ -35,6 +36,8 @@ private:
 
 	QString file_1, file_2;
 	TitleList tl, tl2;
+
+	bool runButtonState_01, runButtonState_02;
 };
 
 

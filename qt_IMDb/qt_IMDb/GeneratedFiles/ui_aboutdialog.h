@@ -79,7 +79,7 @@ public:
     void retranslateUi(QDialog *aboutDialog)
     {
         aboutDialog->setWindowTitle(QApplication::translate("aboutDialog", "About IMDb Comparator", 0));
-        label->setText(QApplication::translate("aboutDialog", "IMDb Comparator (0.0.1)", 0));
+        label->setText(QApplication::translate("aboutDialog", "IMDb Comparator (0.5.0)", 0));
         label_2->setText(QApplication::translate("aboutDialog", "Copyright 2014-2015 treetoon", 0));
         commandLinkButton->setText(QApplication::translate("aboutDialog", "OK", 0));
     } // retranslateUi

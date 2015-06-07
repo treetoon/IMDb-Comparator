@@ -23,10 +23,10 @@ public:
 	void setGroupBoxTitles(QString &file_1, QString &file_2);
 	void setTitleList(const TitleList &tl, const TitleList &tl2);
 	void updateFormModel();
-	void designTableRows();
 
 	void printTable(TitleList &tl, QStandardItemModel &model);
-	void printTable_RemoveDuplicates();
+	void printTable_removeDuplicates();
+	void printTable_showDuplicates();
 
 private slots:
     void on_comboBox_currentIndexChanged(int index);
