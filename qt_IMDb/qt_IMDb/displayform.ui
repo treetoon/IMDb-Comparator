@@ -41,7 +41,7 @@
      <property name="childrenCollapsible">
       <bool>false</bool>
      </property>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="groupBox_1">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -71,7 +71,7 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QTableView" name="tableView">
+        <widget class="QTableView" name="tableView_1">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -138,6 +138,11 @@
      <item>
       <property name="text">
        <string>Remove Duplicates</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Only Show Duplicates</string>
       </property>
      </item>
     </widget>

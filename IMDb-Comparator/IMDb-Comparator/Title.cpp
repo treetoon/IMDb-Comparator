@@ -34,7 +34,7 @@ bool Title::readTitle(std::istream &fin)
 			for (unsigned int currentVar = 1; currentVar <= imdb::TOT_TITLE_VARS; currentVar++)
 			{	
 				currentChar++;
-
+				
 				//read one char at a time until " is found
 				switch (currentVar)
 				{

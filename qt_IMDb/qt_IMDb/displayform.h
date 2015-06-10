@@ -21,8 +21,10 @@ public:
     ~displayForm();
 
 	void setGroupBoxTitles(QString &file_1, QString &file_2);
-	void setTitleList(const TitleList &tl, const TitleList &tl2);
+	void setTitleList(const TitleList &tl_1, const TitleList &tl2);
 	void updateFormModel();
+	void sortColumns(const int &TITLE_VAR);
+	void copyModel(QStandardItemModel &from_model, QStandardItemModel &to_model);
 
 	void printTable(TitleList &tl, QStandardItemModel &model);
 	void printTable_removeDuplicates();
@@ -34,8 +36,8 @@ private slots:
 private:
     Ui::displayForm *ui;
 
-	QStandardItemModel *model, *model_2;
-	TitleList tl, tl2;
+	QStandardItemModel *model_1, *model_2;
+	TitleList tl1, tl2;
 };
 
 #endif // DISPLAYFORM_H

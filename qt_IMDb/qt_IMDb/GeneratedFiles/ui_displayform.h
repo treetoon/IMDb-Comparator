@@ -29,9 +29,9 @@ class Ui_displayForm
 public:
     QVBoxLayout *verticalLayout;
     QSplitter *splitter_4;
-    QGroupBox *groupBox;
+    QGroupBox *groupBox_1;
     QHBoxLayout *horizontalLayout_2;
-    QTableView *tableView;
+    QTableView *tableView_1;
     QGroupBox *groupBox_2;
     QHBoxLayout *horizontalLayout;
     QTableView *tableView_2;
@@ -58,26 +58,26 @@ public:
         splitter_4->setObjectName(QStringLiteral("splitter_4"));
         splitter_4->setOrientation(Qt::Horizontal);
         splitter_4->setChildrenCollapsible(false);
-        groupBox = new QGroupBox(splitter_4);
-        groupBox->setObjectName(QStringLiteral("groupBox"));
-        sizePolicy.setHeightForWidth(groupBox->sizePolicy().hasHeightForWidth());
-        groupBox->setSizePolicy(sizePolicy);
-        groupBox->setMinimumSize(QSize(100, 0));
-        groupBox->setStyleSheet(QStringLiteral(""));
-        groupBox->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
-        horizontalLayout_2 = new QHBoxLayout(groupBox);
+        groupBox_1 = new QGroupBox(splitter_4);
+        groupBox_1->setObjectName(QStringLiteral("groupBox_1"));
+        sizePolicy.setHeightForWidth(groupBox_1->sizePolicy().hasHeightForWidth());
+        groupBox_1->setSizePolicy(sizePolicy);
+        groupBox_1->setMinimumSize(QSize(100, 0));
+        groupBox_1->setStyleSheet(QStringLiteral(""));
+        groupBox_1->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        horizontalLayout_2 = new QHBoxLayout(groupBox_1);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        tableView = new QTableView(groupBox);
-        tableView->setObjectName(QStringLiteral("tableView"));
-        sizePolicy.setHeightForWidth(tableView->sizePolicy().hasHeightForWidth());
-        tableView->setSizePolicy(sizePolicy);
-        tableView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
-        tableView->horizontalHeader()->setCascadingSectionResizes(false);
-        tableView->verticalHeader()->setCascadingSectionResizes(false);
+        tableView_1 = new QTableView(groupBox_1);
+        tableView_1->setObjectName(QStringLiteral("tableView_1"));
+        sizePolicy.setHeightForWidth(tableView_1->sizePolicy().hasHeightForWidth());
+        tableView_1->setSizePolicy(sizePolicy);
+        tableView_1->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
+        tableView_1->horizontalHeader()->setCascadingSectionResizes(false);
+        tableView_1->verticalHeader()->setCascadingSectionResizes(false);
 
-        horizontalLayout_2->addWidget(tableView);
+        horizontalLayout_2->addWidget(tableView_1);
 
-        splitter_4->addWidget(groupBox);
+        splitter_4->addWidget(groupBox_1);
         groupBox_2 = new QGroupBox(splitter_4);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
         sizePolicy.setHeightForWidth(groupBox_2->sizePolicy().hasHeightForWidth());
@@ -112,17 +112,18 @@ public:
     {
         displayForm->setWindowTitle(QApplication::translate("displayForm", "Form", 0));
 #ifndef QT_NO_TOOLTIP
-        groupBox->setToolTip(QString());
+        groupBox_1->setToolTip(QString());
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_STATUSTIP
-        groupBox->setStatusTip(QString());
+        groupBox_1->setStatusTip(QString());
 #endif // QT_NO_STATUSTIP
-        groupBox->setTitle(QApplication::translate("displayForm", "#1 .csv file", 0));
+        groupBox_1->setTitle(QApplication::translate("displayForm", "#1 .csv file", 0));
         groupBox_2->setTitle(QApplication::translate("displayForm", "#2 .csv file", 0));
         comboBox->clear();
         comboBox->insertItems(0, QStringList()
          << QApplication::translate("displayForm", "Show All", 0)
          << QApplication::translate("displayForm", "Remove Duplicates", 0)
+         << QApplication::translate("displayForm", "Only Show Duplicates", 0)
         );
     } // retranslateUi
 

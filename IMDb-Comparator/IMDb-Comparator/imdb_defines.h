@@ -25,8 +25,10 @@ namespace imdb
 	const int DESCRIPTION =		15;
 };
 
+//end of string (row) check needs to happen before reading the current character
 #define APPEND_CURRENT_CHARACTER(titleVar) \
-	while (line.at(currentChar) != '\"'){ \
+	while (currentChar != line.length() && line.at(currentChar) != '\"') \
+	{ \
 		titleVar.append(line.substr(currentChar, 1)); \
 		currentChar++; \
 	} \
