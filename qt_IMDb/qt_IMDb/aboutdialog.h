@@ -1,7 +1,9 @@
 #ifndef ABOUTDIALOG_H
 #define ABOUTDIALOG_H
 
+//Qt Library
 #include <QDialog>
+
 
 namespace Ui {
 class aboutDialog;

@@ -1,16 +1,16 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'qt_imdb.h'
+** Meta object code from reading C++ file 'mainwindow.h'
 **
 ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.4.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../qt_imdb.h"
+#include "../../mainwindow.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'qt_imdb.h' doesn't include <QObject>."
+#error "The header file 'mainwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
 #error "This file was generated using the moc from 5.4.1. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -18,34 +18,34 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-struct qt_meta_stringdata_qt_IMDb_t {
+struct qt_meta_stringdata_mainwindow_t {
     QByteArrayData data[7];
-    char stringdata[129];
+    char stringdata[132];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_qt_IMDb_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_mainwindow_t, stringdata) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_qt_IMDb_t qt_meta_stringdata_qt_IMDb = {
+static const qt_meta_stringdata_mainwindow_t qt_meta_stringdata_mainwindow = {
     {
-QT_MOC_LITERAL(0, 0, 7), // "qt_IMDb"
-QT_MOC_LITERAL(1, 8, 23), // "on_browseButton_clicked"
-QT_MOC_LITERAL(2, 32, 0), // ""
-QT_MOC_LITERAL(3, 33, 23), // "on_actionExit_triggered"
-QT_MOC_LITERAL(4, 57, 24), // "on_actionAbout_triggered"
-QT_MOC_LITERAL(5, 82, 20), // "on_runButton_clicked"
-QT_MOC_LITERAL(6, 103, 25) // "on_browse_2Button_clicked"
+QT_MOC_LITERAL(0, 0, 10), // "mainwindow"
+QT_MOC_LITERAL(1, 11, 23), // "on_browseButton_clicked"
+QT_MOC_LITERAL(2, 35, 0), // ""
+QT_MOC_LITERAL(3, 36, 23), // "on_actionExit_triggered"
+QT_MOC_LITERAL(4, 60, 24), // "on_actionAbout_triggered"
+QT_MOC_LITERAL(5, 85, 20), // "on_runButton_clicked"
+QT_MOC_LITERAL(6, 106, 25) // "on_browse_2Button_clicked"
 
     },
-    "qt_IMDb\0on_browseButton_clicked\0\0"
+    "mainwindow\0on_browseButton_clicked\0\0"
     "on_actionExit_triggered\0"
     "on_actionAbout_triggered\0on_runButton_clicked\0"
     "on_browse_2Button_clicked"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_qt_IMDb[] = {
+static const uint qt_meta_data_mainwindow[] = {
 
  // content:
        7,       // revision
@@ -75,10 +75,10 @@ static const uint qt_meta_data_qt_IMDb[] = {
        0        // eod
 };
 
-void qt_IMDb::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void mainwindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        qt_IMDb *_t = static_cast<qt_IMDb *>(_o);
+        mainwindow *_t = static_cast<mainwindow *>(_o);
         switch (_id) {
         case 0: _t->on_browseButton_clicked(); break;
         case 1: _t->on_actionExit_triggered(); break;
@@ -91,26 +91,26 @@ void qt_IMDb::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
     Q_UNUSED(_a);
 }
 
-const QMetaObject qt_IMDb::staticMetaObject = {
-    { &QMainWindow::staticMetaObject, qt_meta_stringdata_qt_IMDb.data,
-      qt_meta_data_qt_IMDb,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
+const QMetaObject mainwindow::staticMetaObject = {
+    { &QMainWindow::staticMetaObject, qt_meta_stringdata_mainwindow.data,
+      qt_meta_data_mainwindow,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
-const QMetaObject *qt_IMDb::metaObject() const
+const QMetaObject *mainwindow::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *qt_IMDb::qt_metacast(const char *_clname)
+void *mainwindow::qt_metacast(const char *_clname)
 {
     if (!_clname) return Q_NULLPTR;
-    if (!strcmp(_clname, qt_meta_stringdata_qt_IMDb.stringdata))
-        return static_cast<void*>(const_cast< qt_IMDb*>(this));
+    if (!strcmp(_clname, qt_meta_stringdata_mainwindow.stringdata))
+        return static_cast<void*>(const_cast< mainwindow*>(this));
     return QMainWindow::qt_metacast(_clname);
 }
 
-int qt_IMDb::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int mainwindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QMainWindow::qt_metacall(_c, _id, _a);
     if (_id < 0)

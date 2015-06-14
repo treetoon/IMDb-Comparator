@@ -1,11 +1,12 @@
 #ifndef DISPLAYFORM_H
 #define DISPLAYFORM_H
 
+//Qt Library
 #include <QWidget>
 #include <QStandardItem>
 
-#include "TitleList.h"
-
+//qt_IMDb DLL
+#include "titlelist.h"
 
 
 namespace Ui {
@@ -29,6 +30,7 @@ public:
 	void printTable(TitleList &tl, QStandardItemModel &model);
 	void printTable_removeDuplicates();
 	void printTable_showDuplicates();
+	void printTable_timeWatched();
 
 private slots:
     void on_comboBox_currentIndexChanged(int index);
@@ -36,7 +38,6 @@ private slots:
 private:
     Ui::displayForm *ui;
 
-	QStandardItemModel *model_1, *model_2;
 	TitleList tl1, tl2;
 };
 

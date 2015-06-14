@@ -147,13 +147,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Title.cpp" />
-    <ClCompile Include="TitleList.cpp" />
+    <ClInclude Include="imdb_defines.h" />
+    <ClInclude Include="title.h" />
+    <ClInclude Include="titlelist.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="imdb_defines.h" />
-    <ClInclude Include="Title.h" />
-    <ClInclude Include="TitleList.h" />
+    <ClCompile Include="title.cpp" />
+    <ClCompile Include="titlelist.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

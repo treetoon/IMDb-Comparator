@@ -1,102 +1,92 @@
-//Standard Library
-#include <string>
+//Qt Library
+#include <QFileDialog>
+#include <QDropEvent>
 
-//Qt Auto Generated Files
-#include "ui_displayform.h"
+//Qt Forms
+#include "mainwindow.h"
 
-
+//Definitions
+#include "qt_defines.h"
 #include "imdb_defines.h"
 using namespace imdb;
 
-//Qt Forms
-#include "displayform.h"
-#include "mainwindow.h"
 
-
-
-
-displayForm::displayForm(QWidget *parent) :
-    QWidget(parent), ui(new Ui::displayForm)
+MainWindow::MainWindow(QWidget *parent)
+	: QMainWindow(parent)
 {
-    ui->setupUi(this);
-	this->setWindowTitle("Film List Comparisons");
+	ui.setupUi(this);
+
+	about = new aboutDialog();
 
 	//create the tables
 	model_1 = new QStandardItemModel(0, TOT_TITLE_VARS, this);
 	model_2 = new QStandardItemModel(0, TOT_TITLE_VARS, this);
+
+	//update model and force a maximized window
+	//this->showMaximized();
+	updateTable();
 }
 
-displayForm::~displayForm()
+MainWindow::~MainWindow()
 {
-    delete ui;
+	delete about;
 	delete model_1, model_2;
 }
 
-void displayForm::setGroupBoxTitles(QString &file_1, QString &file_2)
+void MainWindow::on_actionExit_triggered()
+{
+	QApplication::quit();
+}
+
+void MainWindow::on_actionLoad_File_1_triggered()
+{
+	readFile(file_1, tl1);
+	setGroupBoxTitles();
+	updateTable();
+}
+
+void MainWindow::on_actionLoad_File_2_triggered()
+{
+	readFile(file_2, tl2);
+	setGroupBoxTitles();
+	updateTable();
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+	about->show();
+}
+
+void MainWindow::readFile(QString &file_temp, TitleList &tl_temp)
+{
+	std::ifstream fin;
+
+	//get filename
+	file_temp = QFileDialog::getOpenFileName(this, "Select one file to open",
+		"C://", "IMDb files (*.csv);;Text files (*.txt);;All files (*.*)");
+
+	//set filename
+	fin.open(file_temp.toLocal8Bit().constData());
+
+	//read from .csv file and save all titles into the TitleList
+	tl_temp.readFile(fin);
+}
+
+void MainWindow::setGroupBoxTitles()
 {
 	//set .csv file names as group box titles
 	if (!file_1.isEmpty())
-		ui->groupBox_1->setTitle(file_1);
+		ui.groupBox_1->setTitle(file_1);
 	else
-		ui->groupBox_1->setTitle("#1 .csv file");
+		ui.groupBox_1->setTitle("#1 .csv file");
 
 	if (!file_2.isEmpty())
-		ui->groupBox_2->setTitle(file_2);
+		ui.groupBox_2->setTitle(file_2);
 	else
-		ui->groupBox_2->setTitle("#2 .csv file");
+		ui.groupBox_2->setTitle("#2 .csv file");
 }
 
-void displayForm::setTitleList(const TitleList &tl, const TitleList &tl2)
-{
-	this->tl1 = tl;
-	this->tl2 = tl2;
-}
-
-void displayForm::updateFormModel()
-{
-	//set table sizes
-	model_1->setRowCount(tl1.getSizeOfVector());
-	model_2->setRowCount(tl2.getSizeOfVector());
-
-	//print all items to the tables
-	printTable(tl1, *model_1);
-	printTable(tl2, *model_2);
-
-	//display models in tableView
-	ui->tableView_1->setModel(model_1);
-	ui->tableView_2->setModel(model_2);
-
-	//enable column sorting on click, then sort
-	ui->tableView_1->setSortingEnabled(true);
-	ui->tableView_2->setSortingEnabled(true);
-	sortColumns(IMDB_RATING);
-
-	//disable the ability to edit
-	ui->tableView_1->setEditTriggers(QAbstractItemView::NoEditTriggers);
-	ui->tableView_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-	//enable movable columns
-	ui->tableView_1->horizontalHeader()->setSectionsMovable(true);
-	ui->tableView_2->horizontalHeader()->setSectionsMovable(true);
-
-	//set header labels
-	QStringList HeaderLabels;
-	SET_HEADER_LABELS(HeaderLabels);
-	model_1->setHorizontalHeaderLabels(HeaderLabels);
-	model_2->setHorizontalHeaderLabels(HeaderLabels);
-
-	//set row heights
-	ui->tableView_1->verticalHeader()->setDefaultSectionSize(23);
-	ui->tableView_2->verticalHeader()->setDefaultSectionSize(23);
-
-	//set table box column widths
-	SET_TABLE_COLUMN_WIDTH(tableView_1);
-	SET_TABLE_COLUMN_WIDTH(tableView_2);
-
-	printTable_timeWatched();
-}
-
-void displayForm::on_comboBox_currentIndexChanged(int index)
+void MainWindow::on_comboBox_currentIndexChanged(int index)
 {
 	switch (index)
 	{
@@ -118,7 +108,52 @@ void displayForm::on_comboBox_currentIndexChanged(int index)
 	printTable_timeWatched();
 }
 
-void displayForm::printTable(TitleList &tl, QStandardItemModel &model)
+void MainWindow::updateTable()
+{
+	//set table sizes
+	model_1->setRowCount(tl1.getSizeOfVector());
+	model_2->setRowCount(tl2.getSizeOfVector());
+
+	//print all items to the tables
+	printTable(tl1, *model_1);
+	printTable(tl2, *model_2);
+
+	//display models in tableView
+	ui.tableView_1->setModel(model_1);
+	ui.tableView_2->setModel(model_2);
+
+	//enable column sorting on click, then sort
+	ui.tableView_1->setSortingEnabled(true);
+	ui.tableView_2->setSortingEnabled(true);
+	sortColumns(IMDB_RATING);
+
+	//disable the ability to edit
+	ui.tableView_1->setEditTriggers(QAbstractItemView::NoEditTriggers);
+	ui.tableView_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+	//enable movable columns
+	ui.tableView_1->horizontalHeader()->setSectionsMovable(true);
+	ui.tableView_2->horizontalHeader()->setSectionsMovable(true);
+
+	//set header labels
+	QStringList HeaderLabels;
+	SET_HEADER_LABELS(HeaderLabels);
+	model_1->setHorizontalHeaderLabels(HeaderLabels);
+	model_2->setHorizontalHeaderLabels(HeaderLabels);
+
+	//set row heights
+	ui.tableView_1->verticalHeader()->setDefaultSectionSize(23);
+	ui.tableView_2->verticalHeader()->setDefaultSectionSize(23);
+
+	//set table box column widths
+	SET_TABLE_COLUMN_WIDTH(tableView_1);
+	SET_TABLE_COLUMN_WIDTH(tableView_2);
+
+	printTable_timeWatched();
+}
+
+
+void MainWindow::printTable(TitleList &tl, QStandardItemModel &model)
 //prints everything possible into the table
 {
 	//print table
@@ -134,7 +169,7 @@ void displayForm::printTable(TitleList &tl, QStandardItemModel &model)
 	}
 }
 
-void displayForm::printTable_removeDuplicates()
+void MainWindow::printTable_removeDuplicates()
 //compares the two .csv files and removes duplicates, then prints to the table
 {
 	//print all items out first or the sorting may sort off of an earlier table sort
@@ -167,7 +202,7 @@ void displayForm::printTable_removeDuplicates()
 		model_2->removeRow(index_list_y.at(i));
 }
 
-void displayForm::printTable_showDuplicates()
+void MainWindow::printTable_showDuplicates()
 //compares the two .csv files and shows only the duplicates, then prints to the table
 {
 	//print all items out first or the sorting may sort off of an earlier table sort
@@ -212,18 +247,18 @@ void displayForm::printTable_showDuplicates()
 	}
 }
 
-void displayForm::sortColumns(const int &TITLE_VAR)
+void MainWindow::sortColumns(const int &TITLE_VAR)
 {
-	if (!ui->tableView_1->isSortingEnabled()){
-		ui->tableView_1->setSortingEnabled(true);
+	if (!ui.tableView_1->isSortingEnabled()){
+		ui.tableView_1->setSortingEnabled(true);
 	}
 
 	//sorts the column in the table
-	ui->tableView_1->sortByColumn(TITLE_VAR, Qt::DescendingOrder);
-	ui->tableView_2->sortByColumn(TITLE_VAR, Qt::DescendingOrder);
+	ui.tableView_1->sortByColumn(TITLE_VAR, Qt::DescendingOrder);
+	ui.tableView_2->sortByColumn(TITLE_VAR, Qt::DescendingOrder);
 }
 
-void displayForm::copyModel(QStandardItemModel &from_model, QStandardItemModel &to_model)
+void MainWindow::copyModel(QStandardItemModel &from_model, QStandardItemModel &to_model)
 //copies from a model to another model
 {
 	//clear rows
@@ -237,7 +272,7 @@ void displayForm::copyModel(QStandardItemModel &from_model, QStandardItemModel &
 	}
 }
 
-void displayForm::printTable_timeWatched()
+void MainWindow::printTable_timeWatched()
 {
 	int sum = 0, sum_2 = 0;
 
@@ -246,13 +281,33 @@ void displayForm::printTable_timeWatched()
 		if (!model_1->item(x, RUNTIME)->text().isEmpty())
 			sum += stoi(model_1->item(x, RUNTIME)->text().toStdString());
 	}
-	ui->label->setText(QString::number(double(sum)/60));
-	
+	ui.label->setText(QString::number(double(sum) / 60));
+
 
 	for (int x = 0; x < model_2->rowCount(); x++)
 	{
 		if (!model_2->item(x, RUNTIME)->text().isEmpty())
 			sum_2 += stoi(model_2->item(x, RUNTIME)->text().toStdString());
 	}
-	ui->label_2->setText(QString::number(double(sum_2) / 60));
+	ui.label_2->setText(QString::number(double(sum_2) / 60));
+}
+
+void MainWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+	event->accept();
+}
+
+void MainWindow::dragLeaveEvent(QDragLeaveEvent *event)
+{
+	event->accept();
+}
+
+void MainWindow::dragMoveEvent(QDragMoveEvent *event)
+{
+	event->accept();
+}
+
+void MainWindow::dropEvent(QDropEvent *event)
+{
+
 }

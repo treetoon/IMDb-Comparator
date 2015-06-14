@@ -1,14 +1,15 @@
-#include "qt_imdb.h"
+//Qt Library
 #include <QtWidgets/QApplication>
 
-
+//Qt Forms
+#include "mainwindow.h"
 
 
 int main(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
 
-	qt_IMDb w;
+	MainWindow w;
 	w.show();
 	
 	return app.exec();

@@ -1,5 +1,9 @@
-#include "aboutdialog.h"
+//Qt Auto Generated Files
 #include "ui_aboutdialog.h"
+
+//Qt Forms
+#include "aboutdialog.h"
+
 
 aboutDialog::aboutDialog(QWidget *parent) :
     QDialog(parent),
