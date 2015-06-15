@@ -71,6 +71,31 @@ void MainWindow::readFile(QString &file_temp, TitleList &tl_temp)
 	//read from .csv file and save all titles into the TitleList
 	tl_temp.readFile(fin);
 
+	fin.close();
+	updateTable();
+}
+
+void MainWindow::autoReadFiles()
+{
+	std::ifstream fin;
+	TitleList tl_temp;
+
+	//get an array containing two path urls
+	std::string *fullPathsArr = tl_temp.autoReadFiles();
+
+	//set filename directory
+	file_1 = QString::fromStdString(fullPathsArr[0]);
+	file_2 = QString::fromStdString(fullPathsArr[1]);
+
+	//read from .csv file and save all titles into the TitleList
+	fin.open(file_1.toLocal8Bit().constData());
+	tl1.readFile(fin);
+	fin.close();
+
+	fin.open(file_2.toLocal8Bit().constData());
+	tl2.readFile(fin);
+	fin.close();
+
 	updateTable();
 }
 
@@ -140,6 +165,9 @@ void MainWindow::setupTable()
 	//set table box column widths
 	SET_TABLE_COLUMN_WIDTH(tableView_1);
 	SET_TABLE_COLUMN_WIDTH(tableView_2);
+
+	//read .csv files from the base folder
+	autoReadFiles();
 }
 
 void MainWindow::updateTable()
@@ -316,6 +344,7 @@ void MainWindow::dragMoveEvent(QDragMoveEvent *event)
 
 void MainWindow::dropEvent(QDropEvent *event)
 {
+	//not fully functional
 	if (event->mimeData()->hasUrls())
 	{
 		foreach(QUrl url_list, event->mimeData()->urls())

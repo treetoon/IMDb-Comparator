@@ -1,7 +1,11 @@
+//Standard Library
 #include <iostream>
 #include <fstream>
 
+//Header
 #include "title.h"
+
+//Definitions
 #include "imdb_defines.h"
 
 
@@ -169,12 +173,10 @@ std::string Title::getTitleVar(int titleVarPos)
 			return constID;
 		case 15:
 			return description;
-		default:
-			return "";
 		}
 	}
 
-	return "";
+	return "EXIT_FAILURE";
 }
 
 void Title::setTitleVars(int titleVarPos, std::string name)

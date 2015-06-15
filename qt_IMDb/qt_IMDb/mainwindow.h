@@ -44,6 +44,7 @@ private slots:
 
 private:
 	void setupTable();
+	void autoReadFiles();
 	void setGroupBoxTitles();
 	void print_totalRuntime(QStandardItemModel &model_temp, QLabel &label_temp);
 
