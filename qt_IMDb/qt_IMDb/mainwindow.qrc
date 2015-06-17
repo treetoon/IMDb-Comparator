@@ -1,6 +1,6 @@
 <RCC>
-    <qresource prefix="/qt_IMDb"/>
-    <qresource prefix="/icons/32x32">
-        <file>Resources/icon/32x32/IMDb-Comparator.ico</file>
-    </qresource>
+  <qresource prefix="/qt_IMDb"/>
+  <qresource prefix="/icons/32x32">
+    <file>Resources/icon/32x32/IMDb-Comparator.ico</file>
+  </qresource>
 </RCC>

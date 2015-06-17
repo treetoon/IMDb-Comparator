@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
@@ -21,6 +22,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableView>
@@ -38,21 +40,36 @@ public:
     QAction *actionLoad_File_1;
     QAction *actionLoad_File_2;
     QWidget *centralWidget;
-    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_3;
+    QVBoxLayout *verticalLayout_2;
     QTabWidget *tabWidget;
     QWidget *tab;
-    QVBoxLayout *verticalLayout_2;
+    QVBoxLayout *verticalLayout_3;
+    QHBoxLayout *horizontalLayout;
     QSplitter *splitter_4;
     QGroupBox *groupBox_1;
     QHBoxLayout *horizontalLayout_2;
     QTableView *tableView_1;
     QGroupBox *groupBox_2;
-    QHBoxLayout *horizontalLayout;
+    QVBoxLayout *verticalLayout;
     QTableView *tableView_2;
+    QHBoxLayout *horizontalLayout_4;
     QComboBox *comboBox;
+    QCheckBox *checkBox_featureFilms;
+    QSpacerItem *horizontalSpacer;
     QWidget *tab_2;
-    QLabel *label_2;
-    QLabel *label;
+    QHBoxLayout *horizontalLayout_7;
+    QHBoxLayout *horizontalLayout_10;
+    QGroupBox *groupBox_infoPage_1;
+    QLabel *label_numHrs_1;
+    QLabel *label_numHrs_1b;
+    QLabel *label_numHrs_filter_1;
+    QLabel *label_numHrs_filter_1b;
+    QGroupBox *groupBox_infoPage_2;
+    QLabel *label_numHrs_2;
+    QLabel *label_numHrs_2b;
+    QLabel *label_numHrs_filter_2;
+    QLabel *label_numHrs_filter_2b;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuHelp;
@@ -63,7 +80,7 @@ public:
         if (mainwindowClass->objectName().isEmpty())
             mainwindowClass->setObjectName(QStringLiteral("mainwindowClass"));
         mainwindowClass->setEnabled(true);
-        mainwindowClass->resize(1024, 600);
+        mainwindowClass->resize(1024, 681);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -75,6 +92,45 @@ public:
         QIcon icon;
         icon.addFile(QStringLiteral(":/icons/32x32/Resources/icon/32x32/IMDb-Comparator.ico"), QSize(), QIcon::Normal, QIcon::Off);
         mainwindowClass->setWindowIcon(icon);
+        mainwindowClass->setStyleSheet(QLatin1String("QMainWindow{\n"
+"	background-color:#282828;\n"
+"}\n"
+"\n"
+"QMenuBar{\n"
+"	background-color:#2d2d2d;\n"
+"}\n"
+"\n"
+"QMenuBar::item{\n"
+"	background-color:#2d2d2d;\n"
+"	color:#fff;\n"
+"}\n"
+"\n"
+"QMenuBar::item:selected{\n"
+"	background: #404040;\n"
+"}\n"
+"\n"
+"QMenu{\n"
+"	background-color:#1a1a1a;\n"
+"	color:#fff;\n"
+"	padding:0;\n"
+"}\n"
+"\n"
+"QMenu::item:selected{\n"
+"	background-color:#343434;\n"
+"	color:#fff;\n"
+"}\n"
+"\n"
+"QSplitter::handle{\n"
+"    \n"
+"}\n"
+"\n"
+"QStatusBar{\n"
+"	background-color:#2d2d2d;\n"
+"	color:#fff;\n"
+"}\n"
+"\n"
+""));
+        mainwindowClass->setTabShape(QTabWidget::Rounded);
         actionExit = new QAction(mainwindowClass);
         actionExit->setObjectName(QStringLiteral("actionExit"));
         actionAbout = new QAction(mainwindowClass);
@@ -88,12 +144,16 @@ public:
         centralWidget = new QWidget(mainwindowClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         centralWidget->setAcceptDrops(true);
-        verticalLayout = new QVBoxLayout(centralWidget);
-        verticalLayout->setSpacing(6);
-        verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout_3 = new QHBoxLayout(centralWidget);
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
+        tabWidget->setFocusPolicy(Qt::TabFocus);
         tabWidget->setTabPosition(QTabWidget::North);
         tabWidget->setTabShape(QTabWidget::Rounded);
         tabWidget->setIconSize(QSize(16, 16));
@@ -105,10 +165,14 @@ public:
         tabWidget->setTabBarAutoHide(false);
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
-        verticalLayout_2 = new QVBoxLayout(tab);
-        verticalLayout_2->setSpacing(6);
-        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_3 = new QVBoxLayout(tab);
+        verticalLayout_3->setSpacing(6);
+        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(-1, 0, -1, 0);
         splitter_4 = new QSplitter(tab);
         splitter_4->setObjectName(QStringLiteral("splitter_4"));
         splitter_4->setFrameShape(QFrame::NoFrame);
@@ -121,7 +185,7 @@ public:
         groupBox_1->setEnabled(true);
         sizePolicy.setHeightForWidth(groupBox_1->sizePolicy().hasHeightForWidth());
         groupBox_1->setSizePolicy(sizePolicy);
-        groupBox_1->setMinimumSize(QSize(100, 0));
+        groupBox_1->setMinimumSize(QSize(25, 0));
         groupBox_1->setAcceptDrops(true);
         groupBox_1->setStyleSheet(QStringLiteral(""));
         groupBox_1->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
@@ -148,52 +212,151 @@ public:
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
         sizePolicy.setHeightForWidth(groupBox_2->sizePolicy().hasHeightForWidth());
         groupBox_2->setSizePolicy(sizePolicy);
-        groupBox_2->setMinimumSize(QSize(100, 0));
+        groupBox_2->setMinimumSize(QSize(25, 0));
         groupBox_2->setAcceptDrops(true);
         groupBox_2->setFlat(false);
-        horizontalLayout = new QHBoxLayout(groupBox_2);
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        verticalLayout = new QVBoxLayout(groupBox_2);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         tableView_2 = new QTableView(groupBox_2);
         tableView_2->setObjectName(QStringLiteral("tableView_2"));
         sizePolicy.setHeightForWidth(tableView_2->sizePolicy().hasHeightForWidth());
         tableView_2->setSizePolicy(sizePolicy);
         tableView_2->setAcceptDrops(true);
 
-        horizontalLayout->addWidget(tableView_2);
+        verticalLayout->addWidget(tableView_2);
 
         splitter_4->addWidget(groupBox_2);
 
-        verticalLayout_2->addWidget(splitter_4);
+        horizontalLayout->addWidget(splitter_4);
 
+
+        verticalLayout_3->addLayout(horizontalLayout);
+
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        horizontalLayout_4->setSizeConstraint(QLayout::SetDefaultConstraint);
+        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
         comboBox = new QComboBox(tab);
         comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setMinimumSize(QSize(200, 20));
-        comboBox->setMaximumSize(QSize(200, 20));
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(comboBox->sizePolicy().hasHeightForWidth());
+        comboBox->setSizePolicy(sizePolicy1);
+        comboBox->setMinimumSize(QSize(100, 20));
+        comboBox->setMaximumSize(QSize(150, 20));
         comboBox->setLayoutDirection(Qt::LeftToRight);
 
-        verticalLayout_2->addWidget(comboBox);
+        horizontalLayout_4->addWidget(comboBox);
 
+        checkBox_featureFilms = new QCheckBox(tab);
+        checkBox_featureFilms->setObjectName(QStringLiteral("checkBox_featureFilms"));
+        sizePolicy1.setHeightForWidth(checkBox_featureFilms->sizePolicy().hasHeightForWidth());
+        checkBox_featureFilms->setSizePolicy(sizePolicy1);
+
+        horizontalLayout_4->addWidget(checkBox_featureFilms);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_4);
+
+        verticalLayout_3->setStretch(0, 100);
+        verticalLayout_3->setStretch(1, 1);
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
-        label_2 = new QLabel(tab_2);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(370, 270, 250, 15));
-        label_2->setMaximumSize(QSize(250, 15));
-        label = new QLabel(tab_2);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(370, 111, 250, 15));
-        label->setMaximumSize(QSize(250, 15));
+        horizontalLayout_7 = new QHBoxLayout(tab_2);
+        horizontalLayout_7->setSpacing(6);
+        horizontalLayout_7->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        horizontalLayout_10 = new QHBoxLayout();
+        horizontalLayout_10->setSpacing(6);
+        horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
+        groupBox_infoPage_1 = new QGroupBox(tab_2);
+        groupBox_infoPage_1->setObjectName(QStringLiteral("groupBox_infoPage_1"));
+        label_numHrs_1 = new QLabel(groupBox_infoPage_1);
+        label_numHrs_1->setObjectName(QStringLiteral("label_numHrs_1"));
+        label_numHrs_1->setGeometry(QRect(11, 20, 200, 30));
+        label_numHrs_1->setMaximumSize(QSize(200, 30));
+        QFont font;
+        font.setFamily(QStringLiteral("Consolas"));
+        font.setPointSize(28);
+        label_numHrs_1->setFont(font);
+        label_numHrs_1b = new QLabel(groupBox_infoPage_1);
+        label_numHrs_1b->setObjectName(QStringLiteral("label_numHrs_1b"));
+        label_numHrs_1b->setGeometry(QRect(11, 50, 150, 15));
+        label_numHrs_1b->setMaximumSize(QSize(150, 15));
+        QFont font1;
+        font1.setFamily(QStringLiteral("Consolas"));
+        font1.setBold(false);
+        font1.setItalic(true);
+        font1.setWeight(50);
+        font1.setStrikeOut(false);
+        font1.setKerning(true);
+        label_numHrs_1b->setFont(font1);
+        label_numHrs_filter_1 = new QLabel(groupBox_infoPage_1);
+        label_numHrs_filter_1->setObjectName(QStringLiteral("label_numHrs_filter_1"));
+        label_numHrs_filter_1->setGeometry(QRect(10, 70, 250, 30));
+        label_numHrs_filter_1->setMaximumSize(QSize(250, 30));
+        label_numHrs_filter_1->setFont(font);
+        label_numHrs_filter_1b = new QLabel(groupBox_infoPage_1);
+        label_numHrs_filter_1b->setObjectName(QStringLiteral("label_numHrs_filter_1b"));
+        label_numHrs_filter_1b->setGeometry(QRect(10, 100, 200, 15));
+        label_numHrs_filter_1b->setMaximumSize(QSize(200, 15));
+        label_numHrs_filter_1b->setFont(font1);
+        label_numHrs_1b->raise();
+        label_numHrs_1->raise();
+        label_numHrs_filter_1->raise();
+        label_numHrs_filter_1b->raise();
+
+        horizontalLayout_10->addWidget(groupBox_infoPage_1);
+
+        groupBox_infoPage_2 = new QGroupBox(tab_2);
+        groupBox_infoPage_2->setObjectName(QStringLiteral("groupBox_infoPage_2"));
+        label_numHrs_2 = new QLabel(groupBox_infoPage_2);
+        label_numHrs_2->setObjectName(QStringLiteral("label_numHrs_2"));
+        label_numHrs_2->setGeometry(QRect(11, 20, 200, 30));
+        label_numHrs_2->setMaximumSize(QSize(200, 30));
+        label_numHrs_2->setFont(font);
+        label_numHrs_2b = new QLabel(groupBox_infoPage_2);
+        label_numHrs_2b->setObjectName(QStringLiteral("label_numHrs_2b"));
+        label_numHrs_2b->setGeometry(QRect(11, 50, 150, 15));
+        label_numHrs_2b->setMaximumSize(QSize(150, 15));
+        label_numHrs_2b->setFont(font1);
+        label_numHrs_filter_2 = new QLabel(groupBox_infoPage_2);
+        label_numHrs_filter_2->setObjectName(QStringLiteral("label_numHrs_filter_2"));
+        label_numHrs_filter_2->setGeometry(QRect(10, 70, 250, 30));
+        label_numHrs_filter_2->setMaximumSize(QSize(250, 30));
+        label_numHrs_filter_2->setFont(font);
+        label_numHrs_filter_2b = new QLabel(groupBox_infoPage_2);
+        label_numHrs_filter_2b->setObjectName(QStringLiteral("label_numHrs_filter_2b"));
+        label_numHrs_filter_2b->setGeometry(QRect(10, 100, 200, 15));
+        label_numHrs_filter_2b->setMaximumSize(QSize(200, 15));
+        label_numHrs_filter_2b->setFont(font1);
+
+        horizontalLayout_10->addWidget(groupBox_infoPage_2);
+
+
+        horizontalLayout_7->addLayout(horizontalLayout_10);
+
         tabWidget->addTab(tab_2, QString());
 
-        verticalLayout->addWidget(tabWidget);
+        verticalLayout_2->addWidget(tabWidget);
+
+        verticalLayout_2->setStretch(0, 3);
+
+        horizontalLayout_3->addLayout(verticalLayout_2);
 
         mainwindowClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(mainwindowClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1024, 18));
+        menuBar->setGeometry(QRect(0, 0, 1024, 21));
         menuBar->setAcceptDrops(false);
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
@@ -245,9 +408,18 @@ public:
          << QApplication::translate("mainwindowClass", "Remove Duplicates", 0)
          << QApplication::translate("mainwindowClass", "Only Show Duplicates", 0)
         );
+        checkBox_featureFilms->setText(QApplication::translate("mainwindowClass", "Show Only Feature Films", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("mainwindowClass", "Film Tables", 0));
-        label_2->setText(QApplication::translate("mainwindowClass", "label_2", 0));
-        label->setText(QApplication::translate("mainwindowClass", "label", 0));
+        groupBox_infoPage_1->setTitle(QApplication::translate("mainwindowClass", "#1 .csv file", 0));
+        label_numHrs_1->setText(QApplication::translate("mainwindowClass", "NUM_HRS", 0));
+        label_numHrs_1b->setText(QApplication::translate("mainwindowClass", "Film hours on record", 0));
+        label_numHrs_filter_1->setText(QApplication::translate("mainwindowClass", "FILTER_NUM_HRS", 0));
+        label_numHrs_filter_1b->setText(QApplication::translate("mainwindowClass", "Film (Filter) hours on record", 0));
+        groupBox_infoPage_2->setTitle(QApplication::translate("mainwindowClass", "#2 .csv file", 0));
+        label_numHrs_2->setText(QApplication::translate("mainwindowClass", "NUM_HRS_2", 0));
+        label_numHrs_2b->setText(QApplication::translate("mainwindowClass", "Film hours on record", 0));
+        label_numHrs_filter_2->setText(QApplication::translate("mainwindowClass", "FILTER_NUM_HRS_2", 0));
+        label_numHrs_filter_2b->setText(QApplication::translate("mainwindowClass", "Film (Filter) hours on record", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("mainwindowClass", "Information", 0));
         menuFile->setTitle(QApplication::translate("mainwindowClass", "File", 0));
         menuHelp->setTitle(QApplication::translate("mainwindowClass", "Help", 0));

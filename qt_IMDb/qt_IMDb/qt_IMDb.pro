@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     GeneratedFiles/Release/moc_qt_imdb.cpp \
     GeneratedFiles/qrc_qt_imdb.cpp \
     ../../IMDb-Comparator/IMDb-Comparator/Title.cpp \
-    ../../IMDb-Comparator/IMDb-Comparator/TitleList.cpp
+    ../../IMDb-Comparator/IMDb-Comparator/TitleList.cpp \
+    mainwindow.cpp
 
 HEADERS  += qt_imdb.h \
     aboutdialog.h \
@@ -31,11 +32,13 @@ HEADERS  += qt_imdb.h \
     GeneratedFiles/ui_displayform.h \
     GeneratedFiles/ui_qt_imdb.h \
     ../../IMDb-Comparator/IMDb-Comparator/Title.h \
-    ../../IMDb-Comparator/IMDb-Comparator/TitleList.h
+    ../../IMDb-Comparator/IMDb-Comparator/TitleList.h \
+    mainwindow.h
 
 FORMS    += qt_imdb.ui \
     aboutdialog.ui \
-    displayform.ui
+    displayform.ui \
+    mainwindow.ui
 
 RESOURCES += \
     qt_imdb.qrc

@@ -35,12 +35,18 @@ protected:
 	void dragMoveEvent(QDragMoveEvent *event);
 	void dropEvent(QDropEvent *event);
 
+	void mousePressEvent(QMouseEvent *event);
+	void mouseMoveEvent(QMouseEvent * event);
+	void resizeEvent(QResizeEvent *event);
+
 private slots:
     void on_actionExit_triggered();
     void on_actionAbout_triggered();
 	void on_actionLoad_File_1_triggered();
 	void on_actionLoad_File_2_triggered();
+
 	void on_comboBox_currentIndexChanged(int index);
+	void on_checkBox_featureFilms_stateChanged(int state);
 
 private:
 	void setupTable();
@@ -52,12 +58,15 @@ private:
 	void printTable(TitleList &tl, QStandardItemModel &model);
 	void printTable_removeDuplicates();
 	void printTable_showDuplicates();
+	void printTable_showFeatureFilms();
 
 	Ui::mainwindowClass ui;
 	aboutDialog *about;
-	QString file_1, file_2;
 	TitleList tl1, tl2;
+
+	QString file_1, file_2;
 	QStandardItemModel *model_1, *model_2;
+	QPoint *dragPos;
 };
 
 
