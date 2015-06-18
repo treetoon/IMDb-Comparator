@@ -33,6 +33,18 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Source Files\Qt windows">
+      <UniqueIdentifier>{71123258-8c04-4ae4-ad7f-5f7d3ca2c329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Qt windows">
+      <UniqueIdentifier>{fb66e483-addc-4ef5-8020-fbb3c03cc567}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Qt windows\MainWindow">
+      <UniqueIdentifier>{2747cdd1-e3f9-42f0-b977-8cac2997810e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Qt windows\MainWindow">
+      <UniqueIdentifier>{06eb4f14-9db2-4099-8dd9-70b26dd6525d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -44,12 +56,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_aboutdialog.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="aboutdialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mainwindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_mainwindow.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -59,22 +65,34 @@
     <ClCompile Include="GeneratedFiles\qrc_mainwindow.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="mainwindow.cpp">
+      <Filter>Source Files\Qt windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aboutdialog.cpp">
+      <Filter>Source Files\Qt windows</Filter>
+    </ClCompile>
+    <ClCompile Include="tablefilter.cpp">
+      <Filter>Source Files\Qt windows\MainWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="infofilter.cpp">
+      <Filter>Source Files\Qt windows\MainWindow</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="aboutdialog.ui">
       <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="aboutdialog.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="mainwindow.h">
-      <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="mainwindow.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="mainwindow.qrc">
       <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="mainwindow.h">
+      <Filter>Header Files\Qt windows</Filter>
+    </CustomBuild>
+    <CustomBuild Include="aboutdialog.h">
+      <Filter>Header Files\Qt windows</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +107,12 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_mainwindow.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tablefilter.h">
+      <Filter>Header Files\Qt windows\MainWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="infofilter.h">
+      <Filter>Header Files\Qt windows\MainWindow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

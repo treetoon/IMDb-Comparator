@@ -115,6 +115,10 @@ void *MainWindow::qt_metacast(const char *_clname)
     if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_MainWindow.stringdata))
         return static_cast<void*>(const_cast< MainWindow*>(this));
+    if (!strcmp(_clname, "TableFilter"))
+        return static_cast< TableFilter*>(const_cast< MainWindow*>(this));
+    if (!strcmp(_clname, "InfoFilter"))
+        return static_cast< InfoFilter*>(const_cast< MainWindow*>(this));
     return QMainWindow::qt_metacast(_clname);
 }
 

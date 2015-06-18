@@ -14,8 +14,13 @@
 //Qt Forms
 #include "aboutdialog.h"
 
+//Filters
+#include "tablefilter.h"
+#include "infofilter.h"
 
-class MainWindow : public QMainWindow
+
+class MainWindow : public QMainWindow, 
+	public TableFilter, public InfoFilter
 {
 	Q_OBJECT
 
@@ -26,7 +31,6 @@ public:
 	void readFile(QString &file_temp, TitleList &tl_temp);
 	void updateTable();
 	
-	void sortColumns(const int &TITLE_VAR);
 	void copyModel(QStandardItemModel &from_model, QStandardItemModel &to_model);
 
 protected:
@@ -48,17 +52,14 @@ private slots:
 	void on_comboBox_currentIndexChanged(int index);
 	void on_checkBox_featureFilms_stateChanged(int state);
 
-private:
+private: 
+
+
 	void setupTable();
 	void autoReadFiles();
 	void setGroupBoxTitles();
 	void print_totalRuntime(QStandardItemModel &model_temp, QLabel &label_temp);
 
-	//print to the table functions
-	void printTable(TitleList &tl, QStandardItemModel &model);
-	void printTable_removeDuplicates();
-	void printTable_showDuplicates();
-	void printTable_showFeatureFilms();
 
 	Ui::mainwindowClass ui;
 	aboutDialog *about;

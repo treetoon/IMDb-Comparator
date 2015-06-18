@@ -12,6 +12,8 @@
 using namespace imdb;
 
 
+
+
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent /*, Qt::FramelessWindowHint*/)
 {
@@ -144,20 +146,19 @@ void MainWindow::on_comboBox_currentIndexChanged(int index)
 	switch (index)
 	{
 	case 0: //Show All (Default: regular table order)
-		printTable(tl1, *model_1);
-		printTable(tl2, *model_2);
+		printTables(tl1, *model_1, tl2, *model_2);
 		break;
 	case 1: //Remove Duplicates (for both tables)
-		printTable_removeDuplicates();
+		printTable_removeDuplicates(tl1, *model_1, tl2, *model_2);
 		break;
 	case 2: //Only Show Duplicates (for both tables)
-		printTable_showDuplicates();
+		printTables_showDuplicates(tl1, *model_1, tl2, *model_2);
 		break;
 	default:
 		break;
 	}
 
-	sortColumns(IMDB_RATING);
+	sortColumns(ui, IMDB_RATING);
 
 	//reset (unselect) the checkbox for Feature Films filter
 	ui.checkBox_featureFilms->setChecked(false);
@@ -170,7 +171,7 @@ void MainWindow::on_comboBox_currentIndexChanged(int index)
 void MainWindow::on_checkBox_featureFilms_stateChanged(int state)
 {
 	if (state){ //select
-		printTable_showFeatureFilms();
+		printTable_showFeatureFilms(tl1, *model_1, tl2, *model_2);
 	}
 	else{ //unselect
 		updateTable();
@@ -224,11 +225,10 @@ void MainWindow::updateTable()
 	model_2->setRowCount(tl2.getSizeOfVector());
 
 	//print all items to the tables
-	printTable(tl1, *model_1);
-	printTable(tl2, *model_2);
+	printTables(tl1, *model_1, tl2, *model_2);
 
 	//sort by default
-	sortColumns(IMDB_RATING);
+	sortColumns(ui, IMDB_RATING);
 
 	//set titles for each table
 	setGroupBoxTitles();
@@ -243,127 +243,15 @@ void MainWindow::updateTable()
 }
 
 
-void MainWindow::printTable(TitleList &tl, QStandardItemModel &model)
-//prints everything possible into the table
-{
-	//print table
-	for (unsigned int row = 0; row < tl.getSizeOfVector(); row++){
-		for (unsigned int column = 0; column < imdb::TOT_TITLE_VARS; column++)
-		{
-			//convert string to Qstring then store the title in item
-			QStandardItem *item = new QStandardItem(QString::fromStdString(tl.getTitleVar(row, column)));
 
-			//print item to table
-			model.setItem(row, column, item);
-		}
-	}
-}
 
-void MainWindow::printTable_removeDuplicates()
-//compares the two .csv files and removes duplicates, then prints to the table
-{
-	//print all items out first or the sorting may sort off of an earlier table sort
-	printTable(tl1, *model_1);
-	printTable(tl2, *model_2);
 
-	std::vector<int> index_list_y;
 
-	//delete duplicates in table #1 starting from bottom
-	for (int x = tl1.getSizeOfVector() - 1; x >= 0; x--)
-	{
-		for (unsigned int y = 0; y < tl2.getSizeOfVector(); y++)
-		{
-			if (model_1->data(model_1->index(x, CONSTID)) ==
-				model_2->data(model_2->index(y, CONSTID)))
-			{
-				model_1->removeRow(x);
-				index_list_y.push_back(y); //store index for #2 table due to sync issues
 
-				break; //found a duplicate, break out to avoid overhead
-			}
-		}
-	}
 
-	//sort the list
-	std::sort(index_list_y.begin(), index_list_y.end());
 
-	//delete duplicates in table #2 starting from bottom
-	for (int i = index_list_y.size() - 1; i >= 0; i--)
-		model_2->removeRow(index_list_y.at(i));
-}
 
-void MainWindow::printTable_showDuplicates()
-//compares the two .csv files and shows only the duplicates, then prints to the table
-{
-	//print all items out first or the sorting may sort off of an earlier table sort
-	printTable(tl1, *model_1);
-	printTable(tl2, *model_2);
 
-	bool found_duplicate = false;
-
-	//find duplicates in the tables starting from bottom
-	for (int x = tl1.getSizeOfVector() - 1; x >= 0; x--){
-		for (unsigned int y = 0; y < tl2.getSizeOfVector(); y++)
-		{
-			if (model_1->data(model_1->index(x, CONSTID)) ==
-				model_2->data(model_2->index(y, CONSTID)))
-			{
-				found_duplicate = true;
-				break; //found a duplicate, break out to avoid overhead
-			}
-		}
-		if (!found_duplicate){
-			model_1->removeRow(x);
-		}
-		found_duplicate = false; //reset
-	}
-
-	//identical but checks from the other table, seemed equally 
-	//asinine to create a function specifically for this function
-	for (int y = tl2.getSizeOfVector() - 1; y >= 0; y--){
-		for (unsigned int x = 0; x < tl1.getSizeOfVector(); x++)
-		{
-			if (model_2->data(model_2->index(y, CONSTID)) ==
-				model_1->data(model_1->index(x, CONSTID)))
-			{
-				found_duplicate = true;
-				break; //found a duplicate, break out to avoid overhead
-			}
-		}
-		if (!found_duplicate){
-			model_2->removeRow(y);
-		}
-		found_duplicate = false; //reset
-	}
-}
-
-void MainWindow::sortColumns(const int &TITLE_VAR)
-{
-	if (!ui.tableView_1->isSortingEnabled()){
-		ui.tableView_1->setSortingEnabled(true);
-	}
-
-	//sorts the column in the table
-	ui.tableView_1->sortByColumn(TITLE_VAR, Qt::DescendingOrder);
-	ui.tableView_2->sortByColumn(TITLE_VAR, Qt::DescendingOrder);
-}
-
-void MainWindow::printTable_showFeatureFilms()
-{
-	//remove entries that are not Feature Films
-	for (int x = model_1->rowCount()-1; x >= 0; x--){
-		if (model_1->item(x, TITLE_TYPE)->text().toStdString() != "Feature Film")
-		{
-			model_1->removeRow(x);
-		}
-	}
-	for (int x = model_2->rowCount() - 1; x >= 0; x--){
-		if (model_2->item(x, TITLE_TYPE)->text().toStdString() != "Feature Film")
-		{
-			model_2->removeRow(x);
-		}
-	}
-}
 
 
 
@@ -432,5 +320,14 @@ void MainWindow::dropEvent(QDropEvent *event)
 	//	updateTable();
 	//}
 }
+
+void asd(){
+	//<tw = 2>
+}
+
+
+
+
+
 
 
