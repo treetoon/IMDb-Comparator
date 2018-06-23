@@ -5,6 +5,11 @@ IMDb list comparisons by using the csv files provided from respective user creat
 
 More specifically your IMDb lists should be comparable with each others. For example if you have a movie list of all films you've seen, you can quickly determine differences such as films you've not seen. The project is aiming towards providing several useful comparison features and filters. 
 
+![](https://raw.githubusercontent.com/treetoon/IMDb-Comparator/master/screenshots/GJjRcs8.png)
+
+![](https://raw.githubusercontent.com/treetoon/IMDb-Comparator/master/screenshots/iP5SLkZ.png)
+
+
 Use the IMDb-Comparator/IMDb-Comparator.sln (solution) for the proper projects. 
 
 
